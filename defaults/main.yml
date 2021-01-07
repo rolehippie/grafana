@@ -1,0 +1,301 @@
+# Standards: 1.2
+---
+# @var grafana_version:description: Version of Grafana to use
+grafana_version: 7.3.6
+
+# @var grafana_image:description: Docker image to use for deployment
+grafana_image: "grafana/grafana:{{ grafana_version }}"
+
+# @var grafana_network:description: Optionally assign this Docker network to container
+grafana_network:
+
+# @var grafana_default_publish:description: List of default port publishing
+# @var grafana_default_publish:example: >
+# grafana_default_publish:
+#   - 127.0.0.1:9093:9093
+# @end
+grafana_default_publish:
+  - 3000:3000
+
+# @var grafana_extra_publish:description: List of extra port publishing
+# @var grafana_extra_publish:example: >
+# grafana_extra_publish:
+#   - 8080:8080
+#   - 127.0.0.1:3030:3030
+# @end
+grafana_extra_publish: []
+
+# @var grafana_default_labels:description: List of default labels to assign to docker command
+grafana_default_labels: []
+
+# @var grafana_extra_labels:description: List of extra labels to assign to docker command
+grafana_extra_labels: []
+
+# @var grafana_default_folders:description: List of default folders to create
+grafana_default_folders:
+  - /etc/grafana
+  - /etc/grafana/provisioning/dashboards
+  - /etc/grafana/provisioning/datasources
+  - /etc/grafana/provisioning/notifiers
+  - /etc/grafana/provisioning/plugins
+  - /var/lib/grafana
+  - /var/lib/grafana/plugins
+  - /var/lib/grafana/dashboards
+
+# @var grafana_extra_folders:description: List of extra folders to create
+# @var grafana_extra_folders:example: >
+# grafana_extra_folders:
+#   - /path/to/host/folder1
+#   - /path/to/host/folder2
+#   - /path/to/host/folder3
+# @end
+grafana_extra_folders: []
+
+# @var grafana_default_volumes:description: List of default volumes to mount
+grafana_default_volumes:
+  - /etc/grafana:/etc/grafana
+  - /var/lib/grafana:/var/lib/grafana
+
+# @var grafana_extra_volumes:description: List of extra volumes to mount
+# @var grafana_extra_volumes:example: >
+# grafana_extra_volumes:
+#   - /path/to/host/folder1:/path/within/container1
+#   - /path/to/host/folder2:/path/within/container2
+#   - /path/to/host/folder3:/path/within/container3
+# @end
+grafana_extra_volumes: []
+
+# @var grafana_domain:description: Domain for external access
+# @var grafana_domain:example: $ "grafana.example.com"
+grafana_domain:
+
+# @var grafana_enforce_domain:description: Enforce the configured domain
+grafana_enforce_domain: False
+
+# @var grafana_instance:description: Name of the Grafana instance
+# @var grafana_instance:example: $ "Example"
+grafana_instance:
+
+# @var grafana_username:description: Username for initial admin
+# @var grafana_username:example: $ "admin"
+grafana_username:
+
+# @var grafana_password:description: Password for initial admin
+# @var grafana_password:example: $ "p455w0rd"
+grafana_password:
+
+# @var grafana_secret:description: Secret for initial admin
+# @var grafana_secret:example: $ "s3cr37"
+grafana_secret:
+
+# @var grafana_organization:description: Name of the primary organization
+# @var grafana_organization:example: $ "Example"
+grafana_organization:
+
+# @var grafana_allow_signup:description: Allow signup of new users
+grafana_allow_signup: False
+
+# @var grafana_org_create:description: Allow users to create organizations
+grafana_org_create: True
+
+# @var grafana_assign_auto:description: Automatically assign an organization to users
+grafana_assign_auto: True
+
+# @var grafana_assign_org:description: OD of the organization to automatically assign
+grafana_assign_org: 1
+
+# @var grafana_assign_role:description: Standard role which gets automatically assigned
+grafana_assign_role: Viewer
+
+# @var grafana_disable_signin:description: Disable the regular signin of users
+grafana_disable_signin: False
+
+# @var grafana_disable_signout:description: Disable the regular signout of users
+grafana_disable_signout: False
+
+# @var grafana_anonymous_auth:description: Allow anonymous users access
+grafana_anonymous_auth: False
+
+# @var grafana_smtp_enabled:description: Enable sending emails via SMTP
+grafana_smtp_enabled: True
+
+# @var grafana_smtp_host:description: Host for sending mails via SMTP
+grafana_smtp_host:
+
+# @var grafana_smtp_user:description: Username for sending mails via SMTP
+grafana_smtp_user:
+
+# @var grafana_smtp_password:description: Password for sending mails via SMTP
+grafana_smtp_password:
+
+# @var grafana_smtp_address:description: Address for sending mails via SMTP
+grafana_smtp_address:
+
+# @var grafana_smtp_name:description: Name for sending mails via SMTP
+grafana_smtp_name: Grafana
+
+# @var grafana_db_type:description: Type of database to use
+grafana_db_type: sqlite3
+
+# @var grafana_db_host:description: Host for the database connection
+grafana_db_host:
+
+# @var grafana_db_name:description: Database used for the database connection
+grafana_db_name:
+
+# @var grafana_db_username:description: Username for the database connection
+grafana_db_username:
+
+# @var grafana_db_password:description: Password for the database connection
+grafana_db_password:
+
+# @var grafana_db_path:description: Path to SQLite3 database
+grafana_db_path: /var/lib/grafana/database.sqlite3
+
+# @var grafana_install_plugins:description: List of plugins to install
+grafana_install_plugins:
+  - grafana-piechart-panel
+
+# @var grafana_admins:description: List of admin users
+# @var grafana_admins:example: >
+# grafana_organizations:
+#   - tboerger
+#   - hans
+#   - octocat
+# @end
+grafana_admins: []
+
+# @var grafana_organizations:description: List of organizations
+# @var grafana_organizations:example: >
+# grafana_organizations:
+#   - Org1
+#   - Org2
+#   - Org3
+# @end
+grafana_organizations: []
+
+# @var grafana_providers:description: List of providers to integrate
+grafana_providers:
+  - name: default
+    orgId: 1
+    folder: ''
+    folderUid: ''
+    type: file
+    disableDeletion: False
+    updateIntervalSeconds: 10
+    options:
+      path: /var/lib/grafana/dashboards
+
+# @var grafana_datasources:description: List of datasources to integrate
+# @var grafana_datasources:example: >
+# grafana_datasources:
+#   - name: prometheus
+#     type: prometheus
+#     access: proxy
+#     url: http://localhost:9090
+#     orgId: 1
+#     isDefault: True
+#     editable: False
+# @end
+grafana_datasources: []
+
+# @var grafana_ldap_enabled:description: Enable LDAP authentication and configuration
+grafana_ldap_enabled: False
+
+# @var grafana_ldap_signup:description: Enable signup via LDAP
+grafana_ldap_signup: True
+
+# @var grafana_ldap_host:description: Host of the LDAP server
+grafana_ldap_host:
+
+# @var grafana_ldap_port:description: Port of the LDAP server
+grafana_ldap_port:
+
+# @var grafana_ldap_use_ssl:description: Use SSL for LDAP connection
+grafana_ldap_use_ssl: False
+
+# @var grafana_ldap_start_tls:description: Use STARTTLS for LDAP connection
+grafana_ldap_start_tls: False
+
+# @var grafana_ldap_ssl_skip_verify:description: Skip SSL verification for LDAP connection
+grafana_ldap_ssl_skip_verify: False
+
+# @var grafana_ldap_bind_dn:description: Bind DN for LDAP server
+grafana_ldap_bind_dn:
+
+# @var grafana_ldap_bind_password:description: Password for LDAP server
+grafana_ldap_bind_password:
+
+# @var grafana_ldap_search_filter:description: Search filter for users from LDAP
+grafana_ldap_search_filter: (&(objectClass=posixAccount)(uid=%s))
+
+# @var grafana_ldap_search_base_dns:description: Search base DN for LDAP users
+grafana_ldap_search_base_dns: []
+
+# @var grafana_ldap_group_search:description: Enable group searching for LDAP server
+grafana_ldap_group_search: True
+
+# @var grafana_ldap_group_search_filter:description: Search filter for groups from LDAP
+grafana_ldap_group_search_filter: (&(objectClass=posixGroup)(memberUid=%s))
+
+# @var grafana_ldap_group_search_base_dns:description: Search base DN for LDAP groups
+grafana_ldap_group_search_base_dns: []
+
+# @var grafana_ldap_group_search_filter_user_attribute:description: User attribute for group search within LDAP
+grafana_ldap_group_search_filter_user_attribute: cn
+
+# @var grafana_ldap_attribute_name:description: Name attribute within LDAP
+grafana_ldap_attribute_name: givenName
+
+# @var grafana_ldap_attribute_surname:description: Surname attribute within LDAP
+grafana_ldap_attribute_surname: sn
+
+# @var grafana_ldap_attribute_username:description: Username attribute within LDAP
+grafana_ldap_attribute_username: cn
+
+# @var grafana_ldap_attribute_member_of:description: Member of attribute within LDAP
+grafana_ldap_attribute_member_of: memberOf
+
+# @var grafana_ldap_attribute_email:description: Email attribute within LDAP
+grafana_ldap_attribute_email: mail
+
+# @var grafana_ldap_group_mappings:description: Group mappings from LDAP to Grafana
+# @var grafana_ldap_group_mappings:example: >
+# grafana_ldap_group_mappings:
+#   - dn: cn=admins,dc=grafana,dc=org
+#     role: Admin
+#     admin: True
+#   - dn: cn=users,dc=grafana,dc=org
+#     role: Editor
+#   - dn: cn=manager,dc=grafana,dc=org
+#     role: Viewer
+#     org: 1
+#   - dn: '*'
+#     role: Viewer
+# @end
+grafana_ldap_group_mappings: []
+
+# @var grafana_github_enabled:description: Enable GitHub authentication and configuration
+grafana_github_enabled: False
+
+# @var grafana_github_signup:description: Enable signup via GitHub
+grafana_github_signup: True
+
+# @var grafana_github_client:description: Client id for GitHub oauth2
+grafana_github_client:
+
+# @var grafana_github_client:description: Secret id for GitHub oauth2
+grafana_github_secret:
+
+# @var grafana_github_teams:description: List of GitHub teams allowed to access grafana
+grafana_github_teams: []
+
+# @var grafana_admin_disable:description: Attributes for revoke admin access post request
+grafana_admin_disable:
+  isGrafanaAdmin: False
+
+# @var grafana_admin_enable:description: Attributes for promote admin access post request
+grafana_admin_enable:
+  isGrafanaAdmin: True
+
+...

@@ -1,0 +1,4 @@
+apiVersion: 1
+
+providers:
+  {{ grafana_providers | to_nice_yaml(indent=2) | indent(width=2, indentfirst=False) | trim }}

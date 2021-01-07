@@ -1,0 +1,185 @@
+# Standards: 1.2
+---
+- name: Create required directories
+  loop: "{{ grafana_default_folders + grafana_extra_folders }}"
+  file:
+    path: "{{ item }}"
+    owner: "472"
+    group: "472"
+    recurse: True
+    state: directory
+  tags:
+    - grafana
+
+- name: Write dashboards config
+  notify:
+    - Restart grafana
+  template:
+    src: dashboards.j2
+    dest: /etc/grafana/provisioning/dashboards/default.yml
+  tags:
+    - grafana
+
+- name: Write datasources config
+  notify:
+    - Restart grafana
+  template:
+    src: datasources.j2
+    dest: /etc/grafana/provisioning/datasources/default.yml
+  tags:
+    - grafana
+
+- name: Write general config
+  notify:
+    - Restart grafana
+  template:
+    src: config.j2
+    dest: /etc/grafana/grafana.ini
+  tags:
+    - grafana
+
+- name: Write ldap config
+  notify:
+    - Restart grafana
+  template:
+    src: ldap.j2
+    dest: /etc/grafana/ldap.toml
+  tags:
+    - grafana
+
+- name: Write default config
+  notify:
+    - Restart grafana
+  template:
+    src: default.j2
+    dest: /etc/default/grafana
+  tags:
+    - grafana
+
+- name: Write service file
+  notify:
+    - Restart grafana
+  template:
+    src: service.j2
+    dest: /etc/systemd/system/grafana.service
+  tags:
+    - grafana
+
+- name: Start grafana service
+  systemd:
+    name: grafana
+    state: started
+    daemon_reload: yes
+    masked: no
+    enabled: yes
+  tags:
+    - grafana
+
+- name: Force handler flush
+  meta: flush_handlers
+  tags:
+    - grafana
+
+- name: Configure grafana service
+  when: not ansible_check_mode
+  block:
+    - name: Wait for start
+      register: result
+      until: result.status == 200
+      retries: 60
+      delay: 5
+      uri:
+        url: "https://{{ grafana_domain }}/login"
+        status_code: 200
+      tags:
+        - grafana
+
+    - name: Check existing users
+      register: grafana_existing_users
+      uri:
+        url: "https://{{ grafana_domain }}/api/users"
+        user: "{{ grafana_username }}"
+        password: "{{ grafana_password }}"
+        force_basic_auth: True
+        method: GET
+        return_content: True
+      tags:
+        - grafana
+
+    - name: Revoke admin access
+      loop: "{{ grafana_existing_users.json | map(attribute='login') | list }}"
+      when:
+        - item != grafana_username
+        - item not in grafana_admins
+      uri:
+        url: "https://{{ grafana_domain }}/api/admin/users/{{ grafana_existing_users.json | selectattr('login', 'equalto', item) | map(attribute='id') | first }}/permissions"
+        user: "{{ grafana_username }}"
+        password: "{{ grafana_password }}"
+        force_basic_auth: True
+        method: PUT
+        body_format: json
+        body: "{{ grafana_admin_disable | to_json }}"
+      tags:
+        - grafana
+
+    - name: Promote admin access
+      loop: "{{ grafana_admins }}"
+      when:
+        - grafana_existing_users.json | selectattr('login', 'equalto', item) | list | length != 0
+      uri:
+        url: "https://{{ grafana_domain }}/api/admin/users/{{ grafana_existing_users.json | selectattr('login', 'equalto', item) | map(attribute='id') | first }}/permissions"
+        user: "{{ grafana_username }}"
+        password: "{{ grafana_password }}"
+        force_basic_auth: True
+        method: PUT
+        body_format: json
+        body: "{{ grafana_admin_enable | to_json }}"
+      tags:
+        - grafana
+
+    - name: Check existing orgs
+      register: grafana_existing_orgs
+      uri:
+        url: "https://{{ grafana_domain }}/api/orgs"
+        user: "{{ grafana_username }}"
+        password: "{{ grafana_password }}"
+        force_basic_auth: True
+        method: GET
+        return_content: True
+      tags:
+        - grafana
+
+    - name: Create additional orgs
+      loop: "{{ grafana_organizations }}"
+      when:
+        - grafana_existing_orgs.json | selectattr('name', 'equalto', item) | list | length == 0
+      uri:
+        url: https://{{ grafana_domain }}/api/orgs
+        user: "{{ grafana_username }}"
+        password: "{{ grafana_password }}"
+        force_basic_auth: True
+        method: POST
+        body_format: json
+        body: |
+          {
+            "name": "{{ item }}"
+          }
+      tags:
+        - grafana
+
+    - name: Update default org
+      uri:
+        url: "https://{{ grafana_domain }}/api/orgs/1"
+        user: "{{ grafana_username }}"
+        password: "{{ grafana_password }}"
+        force_basic_auth: True
+        method: PUT
+        body_format: json
+        body: |
+          {
+            "name": "{{ grafana_organization }}"
+          }
+      tags:
+        - grafana
+
+...

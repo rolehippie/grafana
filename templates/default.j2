@@ -1,0 +1,76 @@
+GF_DEFAULT_APP_MODE=production
+GF_DEFAULT_INSTANCE_NAME={{ grafana_instance }}
+GF_SERVER_PROTOCOL=http
+GF_SERVER_DOMAIN={{ grafana_domain }}
+GF_SERVER_ENFORCE_DOMAIN={{ grafana_enforce_domain | lower }}
+GF_SERVER_ROOT_URL=https://{{ grafana_domain }}
+GF_SERVER_ENABLE_GZIP=true
+
+GF_DATABASE_TYPE={{ grafana_db_type }}
+{% if grafana_db_host | default(False) %}
+GF_DATABASE_HOST={{ grafana_db_host }}
+{% endif %}
+{% if grafana_db_name | default(False) %}
+GF_DATABASE_NAME={{ grafana_db_name }}
+{% endif %}
+{% if grafana_db_username | default(False) %}
+GF_DATABASE_USER={{ grafana_db_username }}
+{% endif %}
+{% if grafana_db_password | default(False) %}
+GF_DATABASE_PASSWORD={{ grafana_db_password }}
+{% endif %}
+{% if grafana_db_type == 'sqlite3' and grafana_db_path | default(False) %}
+GF_DATABASE_PATH={{ grafana_db_path }}
+{% endif %}
+
+GF_SECURITY_ADMIN_USER={{ grafana_username }}
+GF_SECURITY_ADMIN_PASSWORD={{ grafana_password }}
+GF_SECURITY_SECRET_KEY={{ grafana_secret }}
+GF_SECURITY_COOKIE_USERNAME=username
+GF_SECURITY_COOKIE_REMEMBER_NAME=remember
+
+GF_USERS_ALLOW_SIGN_UP={{ grafana_allow_signup | lower }}
+GF_USERS_ALLOW_ORG_CREATE={{ grafana_org_create | lower }}
+GF_USERS_AUTO_ASSIGN_ORG={{ grafana_assign_auto | lower }}
+GF_USERS_AUTO_ASSIGN_ORG_ID={{ grafana_assign_org }}
+GF_USERS_AUTO_ASSIGN_ORG_ROLE={{ grafana_assign_role }}
+
+GF_AUTH_DISABLE_LOGIN_FORM={{ grafana_disable_signin | lower }}
+GF_AUTH_DISABLE_SIGNOUT_MENU={{ grafana_disable_signout | lower }}
+GF_AUTH_ANONYMOUS_ENABLED={{ grafana_anonymous_auth | lower }}
+
+GF_SESSION_PROVIDER=file
+GF_SESSION_PROVIDER_CONFIG=/var/lib/grafana/sessions
+GF_SESSION_COOKIE_NAME=grafana
+GF_SESSION_COOKIE_SECURE=true
+
+GF_SMTP_ENABLED={{ grafana_smtp_enabled | lower }}
+GF_SMTP_HOST={{ grafana_smtp_host }}
+GF_SMTP_USER={{ grafana_smtp_user }}
+GF_SMTP_PASSWORD={{ grafana_smtp_password }}
+GF_SMTP_FROM_ADDRESS={{ grafana_smtp_address }}
+GF_SMTP_FROM_NAME={{ grafana_smtp_name }}
+
+GF_LOG_MODE=console
+GF_LOG_LEVEL=info
+
+GF_METRICS_ENABLED=false
+
+GF_ALERTING_ENABLED=true
+GF_ALERTING_EXECUTE_ALERTS=true
+
+GF_INSTALL_PLUGINS={{ grafana_install_plugins | join(',') }}
+{% if grafana_ldap_enabled | default(False) %}
+
+GF_AUTH_LDAP_ENABLED={{ grafana_ldap_enabled | lower }}
+GF_AUTH_LDAP_CONFIG_FILE=/etc/grafana/ldap.toml
+GF_AUTH_LDAP_ALLOW_SIGN_UP={{ grafana_ldap_signup | lower }}
+{% endif %}
+{% if grafana_github_enabled | default(False) %}
+
+GF_AUTH_GITHUB_ENABLED={{ grafana_github_enabled | lower }}
+GF_AUTH_GITHUB_ALLOW_SIGN_UP={{ grafana_github_signup | lower }}
+GF_AUTH_GITHUB_CLIENT_ID={{ grafana_github_client }}
+GF_AUTH_GITHUB_CLIENT_SECRET={{ grafana_github_secret }}
+GF_AUTH_GITHUB_TEAM_IDS={{ grafana_github_teams | join(",") }}
+{% endif %}

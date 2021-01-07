@@ -1,0 +1,39 @@
+[Unit]
+Description=Grafana
+
+Wants=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+RestartSec=10s
+EnvironmentFile=/etc/environment
+
+ExecStop=/bin/sh -c '/usr/bin/docker ps | /bin/grep %p 1> /dev/null && /usr/bin/docker stop %p || true'
+ExecStartPre=/bin/sh -c '/usr/bin/docker ps | /bin/grep %p 1> /dev/null && /usr/bin/docker kill %p || true'
+ExecStartPre=/bin/sh -c '/usr/bin/docker ps -a | /bin/grep %p 1> /dev/null && /usr/bin/docker rm %p || true'
+ExecStartPre=/usr/bin/docker pull {{ grafana_image }}
+ExecStart=/usr/bin/docker run --rm \
+  --name %p \
+  --hostname %p \
+{% for item in grafana_default_labels + grafana_extra_labels %}
+  --label {{ item }} \
+{% endfor %}
+  --env-file /etc/default/grafana \
+{% if grafana_network | default(False) %}
+  --network {{ grafana_network }} \
+{% endif %}
+{% for item in grafana_default_volumes + grafana_extra_volumes %}
+  --volume {{ item }} \
+{% endfor %}
+{% for item in grafana_default_publish + grafana_extra_publish %}
+  --publish {{ item }} \
+{% endfor %}
+  --health-cmd 'wget -q --spider http://localhost:3000/login' \
+  --health-interval 30s \
+  --health-retries 5 \
+  --health-timeout 10s \
+  {{ grafana_image }}
+
+[Install]
+WantedBy=multi-user.target
