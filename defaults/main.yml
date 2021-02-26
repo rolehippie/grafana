@@ -1,0 +1,139 @@
+# Standards: 0.1
+---
+# @var grafana_repo_release:description: Enforce another release for the repo
+grafana_repo_release: stable
+
+# @var grafana_domain:description: Domain for external access
+# @var grafana_domain:example: $ "https://grafana.example.com"
+grafana_domain:
+
+# @var grafana_instance:description: Name of the Grafana instance
+# @var grafana_instance:example: $ "Example"
+grafana_instance:
+
+# @var grafana_username:description: Username for initial admin
+# @var grafana_username:example: $ "admin"
+grafana_username:
+
+# @var grafana_password:description: Password for initial admin
+# @var grafana_password:example: $ "p455w0rd"
+grafana_password:
+
+# @var grafana_secret:description: Secret for initial admin
+# @var grafana_secret:example: $ "s3cr37"
+grafana_secret:
+
+# @var grafana_organization:description: Name of the primary organization
+# @var grafana_organization:example: $ "Example"
+grafana_organization:
+
+# @var grafana_allow_signup:description: Allow signup of new users
+grafana_allow_signup: False
+
+# @var grafana_org_create:description: Allow users to create organizations
+grafana_org_create: False
+
+# @var grafana_assign_auto:description: Automatically assign an organization to users
+grafana_assign_auto: True
+
+# @var grafana_assign_org:description: OD of the organization to automatically assign
+grafana_assign_org: 1
+
+# @var grafana_assign_role:description: Standard role which gets automatically assigned
+grafana_assign_role: Viewer
+
+# @var grafana_disable_signin:description: Disable the regular signin of users
+grafana_disable_signin: False
+
+# @var grafana_disable_signout:description: Disable the regular signout of users
+grafana_disable_signout: False
+
+# @var grafana_anonymous_auth:description: Allow anonymous users access
+grafana_anonymous_auth: False
+
+# @var grafana_smtp_enabled:description: Enable sending mails via SMTP
+grafana_smtp_enabled: True
+
+# @var grafana_smtp_host:description: Host for sending mails via SMTP
+grafana_smtp_host:
+
+# @var grafana_smtp_user:description: Username for sending mails via SMTP
+grafana_smtp_user:
+
+# @var grafana_smtp_password:description: Password for sending mails via SMTP
+grafana_smtp_password:
+
+# @var grafana_smtp_address:description: Address for sending mails via SMTP
+grafana_smtp_address:
+
+# @var grafana_smtp_name:description: Name for sending mails via SMTP
+grafana_smtp_name: Grafana
+
+# @var grafana_db_type:description: Type of database to use
+grafana_db_type: mysql
+
+# @var grafana_db_host:description: Host for the database connection
+grafana_db_host:
+
+# @var grafana_db_name:description: Database used for the database connection
+grafana_db_name:
+
+# @var grafana_db_username:description: Username for the database connection
+grafana_db_username:
+
+# @var grafana_db_password:description: Password for the database connection
+grafana_db_password:
+
+# @var grafana_db_path:description: Path to SQLite3 database
+grafana_db_path:
+
+# @var grafana_install_plugins:description: List of plugins to install
+grafana_install_plugins:
+  - grafana-piechart-panel
+
+# @var grafana_admins:description: List of admin users
+grafana_admins: []
+
+# @var grafana_organizations:description: List of organizations
+# @var grafana_organizations:example: >
+# grafana_organizations:
+#   - Org1
+#   - Org2
+#   - Org3
+# @end
+grafana_organizations: []
+
+# @var grafana_providers:description: List of providers to integrate
+grafana_providers:
+  - name: default
+    orgId: 1
+    folder: ''
+    folderUid: ''
+    type: file
+    disableDeletion: False
+    updateIntervalSeconds: 10
+    options:
+      path: /var/lib/grafana/dashboards
+
+# @var grafana_datasources:description: List of datasources to integrate
+# @var grafana_datasources:example: >
+# grafana_datasources:
+#   - name: prometheus
+#     type: prometheus
+#     access: proxy
+#     url: http://localhost:9090
+#     orgId: 1
+#     isDefault: True
+#     editable: False
+# @end
+grafana_datasources: []
+
+# @var grafana_admin_enable:description: Payload used to promote admins
+grafana_admin_enable:
+  isGrafanaAdmin: True
+
+# @var grafana_admin_disable:description: Payload used to demote admins
+grafana_admin_disable:
+  isGrafanaAdmin: False
+
+...

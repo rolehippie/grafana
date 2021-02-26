@@ -1,0 +1,231 @@
+# Standards: 0.1
+---
+- name: Download repo key
+  apt_key:
+    url: https://packages.grafana.com/gpg.key
+    id: 4E40DDF6D76E284A4A6780E48C8C34C524098CB6
+    state: present
+  tags:
+    - grafana
+
+- name: Add apt repository
+  apt_repository:
+    repo: "deb https://packages.grafana.com/oss/deb {{ grafana_repo_release }} main"
+    filename: grafana
+    update_cache: True
+    state: present
+  tags:
+    - grafana
+
+- name: Install required packages
+  loop:
+    - grafana
+  package:
+    name: "{{ item }}"
+    state: present
+  tags:
+    - grafana
+
+- name: Write providers config
+  notify:
+    - Restart grafana
+  template:
+    src: providers.j2
+    dest: /etc/grafana/provisioning/dashboards/default.yml
+  tags:
+    - grafana
+
+- name: Write datasources config
+  notify:
+    - Restart grafana
+  template:
+    src: datasources.j2
+    dest: /etc/grafana/provisioning/datasources/default.yml
+  tags:
+    - grafana
+
+- name: Write default config
+  notify:
+    - Restart grafana
+  template:
+    src: default.j2
+    dest: /etc/default/grafana-server
+  tags:
+    - grafana
+
+- name: Write general config
+  notify:
+    - Restart grafana
+  template:
+    src: config.j2
+    dest: /etc/grafana/grafana.ini
+  tags:
+    - grafana
+
+- name: Write ldap config
+  notify:
+    - Restart grafana
+  template:
+    src: ldap.j2
+    dest: /etc/grafana/grafana.ini
+  tags:
+    - grafana
+
+- name: Create required directories
+  loop:
+    - /var/lib/grafana/plugins
+    - /var/lib/grafana/dashboards
+  file:
+    path: "{{ item }}"
+    owner: grafana
+    group: grafana
+    mode: u=rwx,g=rx,o=
+    state: directory
+  tags:
+    - grafana
+
+- name: Check installed plugins
+  register: grafana_plugins_list
+  changed_when: False
+  command: grafana-cli plugins ls
+  tags:
+    - grafana
+
+- name: Install defined plugins
+  loop: "{{ grafana_install_plugins }}"
+  when:
+    - grafana_plugins_list.stdout is defined
+    - item not in grafana_plugins_list.stdout
+    - item.state | default('present') == 'absent'
+  notify:
+    - Restart grafana
+  command: "grafana-cli plugins install {{ item.name | default(item) }}"
+  tags:
+    - grafana
+
+- name: Remove defined plugins
+  loop: "{{ grafana_install_plugins }}"
+  when:
+    - grafana_plugins_list.stdout is defined
+    - item in grafana_plugins_list.stdout
+    - item.state | default('present') == 'absent'
+  notify:
+    - Restart grafana
+  command: "grafana-cli plugins remove {{ item.name | default(item) }}"
+  tags:
+    - grafana
+
+- name: Start grafana service
+  systemd:
+    name: grafana-server
+    state: started
+    daemon_reload: yes
+    masked: no
+    enabled: yes
+  tags:
+    - grafana
+
+- name: Force handler flush
+  meta: flush_handlers
+  tags:
+    - grafana
+
+- name: Configure grafana service
+  when: not ansible_check_mode
+  block:
+    - name: Wait for start
+      register: result
+      until: result.status == 200
+      retries: 60
+      delay: 5
+      uri:
+        url: http://localhost:3000
+        status_code: 200
+      tags:
+        - grafana
+
+    - name: Check existing users
+      register: grafana_existing_users
+      uri:
+        url: http://localhost:3000/api/users
+        user: "{{ grafana_username }}"
+        password: "{{ grafana_password }}"
+        force_basic_auth: True
+        method: GET
+        return_content: True
+      tags:
+        - grafana
+
+    - name: Revoke admin access
+      loop: "{{ grafana_existing_users.json | map(attribute='login') | list }}"
+      when: item != grafana_username and item not in grafana_admins
+      uri:
+        url: "http://localhost:3000/api/admin/users/{{ grafana_existing_users.json | selectattr('login', 'equalto', item) | map(attribute='id') | first }}/permissions"
+        user: "{{ grafana_username }}"
+        password: "{{ grafana_password }}"
+        force_basic_auth: True
+        method: PUT
+        body_format: json
+        body: '{{ grafana_admin_disable | to_json }}'
+      tags:
+        - grafana
+
+    - name: Promote admin access
+      loop: "{{ grafana_admins }}"
+      when: ((grafana_existing_users.json | selectattr('login', 'equalto', item)) | list) | length != 0
+      uri:
+        url: "http://localhost:3000/api/admin/users/{{ grafana_existing_users.json | selectattr('login', 'equalto', item) | map(attribute='id') | first }}/permissions"
+        user: "{{ grafana_username }}"
+        password: "{{ grafana_password }}"
+        force_basic_auth: True
+        method: PUT
+        body_format: json
+        body: "{{ grafana_admin_enable | to_json }}"
+      tags:
+        - grafana
+
+    - name: Check existing orgs
+      register: grafana_existing_orgs
+      uri:
+        url: http://localhost:3000/api/orgs
+        user: "{{ grafana_username }}"
+        password: "{{ grafana_password }}"
+        force_basic_auth: True
+        method: GET
+        return_content: True
+      tags:
+        - grafana
+
+    - name: Create additional orgs
+      loop: "{{ grafana_organizations }}"
+      when: ((grafana_existing_orgs.json | selectattr('name', 'equalto', item)) | list) | length == 0
+      uri:
+        url: http://localhost:3000/api/orgs
+        user: "{{ grafana_username }}"
+        password: "{{ grafana_password }}"
+        force_basic_auth: True
+        method: POST
+        body_format: json
+        body: |
+          {
+            "name": "{{ item }}"
+          }
+      tags:
+        - grafana
+
+    - name: Update default org
+      uri:
+        url: http://localhost:3000/api/orgs/1
+        user: "{{ grafana_username }}"
+        password: "{{ grafana_password }}"
+        force_basic_auth: True
+        method: PUT
+        body_format: json
+        body: |
+          {
+            "name": "{{ grafana_organization }}"
+          }
+      tags:
+        - grafana
+
+...
