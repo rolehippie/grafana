@@ -1,4 +1,4 @@
-# Standards: 0.1
+# Standards: 1.2
 ---
 # @var grafana_repo_release:description: Enforce another release for the repo
 grafana_repo_release: stable
