@@ -4,7 +4,7 @@
 grafana_repo_release: stable
 
 # @var grafana_domain:description: Domain for external access
-# @var grafana_domain:example: $ "https://grafana.example.com"
+# @var grafana_domain:example: $ "grafana.example.com"
 grafana_domain:
 
 # @var grafana_instance:description: Name of the Grafana instance
@@ -135,5 +135,17 @@ grafana_admin_enable:
 # @var grafana_admin_disable:description: Payload used to demote admins
 grafana_admin_disable:
   isGrafanaAdmin: False
+
+# @var grafana_keycloak_url:description: Keycloak URL for OAuth2 authentication
+grafana_keycloak_url:
+
+# @var grafana_keycloak_client:description: Client id for Keycloak authentication
+grafana_keycloak_client:
+
+# @var grafana_keycloak_secret:description: Client secret for Keycloak authentication
+grafana_keycloak_secret:
+
+# @var grafana_admin_disable:description: Roles mapping for Keycloak authentication
+grafana_keycloak_roles:
 
 ...

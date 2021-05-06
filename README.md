@@ -1,8 +1,14 @@
 # grafana
 
-[![Build Status](https://gitlab.proact.eu/cloud/ansible/roles/grafana/badges/master/pipeline.svg)](https://gitlab.proact.eu/cloud/ansible/roles/grafana)
+[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/grafana) [![Build Status](https://img.shields.io/drone/build/rolehippie/grafana/master?logo=drone)](https://cloud.drone.io/rolehippie/grafana) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/grafana)](https://github.com/rolehippie/grafana/blob/master/LICENSE) 
 
-Ansible role to install and configure Grafana observability platform
+Ansible role to install and configure Grafana observability platform. 
+
+## Sponsor 
+
+[![Proact Deutschland GmbH](https://proact.eu/wp-content/uploads/2020/03/proact-logo.png)](https://proact.eu) 
+
+Building and improving this Ansible role have been sponsored by my employer **Proact Deutschland GmbH**.
 
 ## Table of content
 
@@ -27,6 +33,10 @@ Ansible role to install and configure Grafana observability platform
   * [grafana_domain](#grafana_domain)
   * [grafana_install_plugins](#grafana_install_plugins)
   * [grafana_instance](#grafana_instance)
+  * [grafana_keycloak_client](#grafana_keycloak_client)
+  * [grafana_keycloak_roles](#grafana_keycloak_roles)
+  * [grafana_keycloak_secret](#grafana_keycloak_secret)
+  * [grafana_keycloak_url](#grafana_keycloak_url)
   * [grafana_org_create](#grafana_org_create)
   * [grafana_organization](#grafana_organization)
   * [grafana_organizations](#grafana_organizations)
@@ -51,7 +61,7 @@ Ansible role to install and configure Grafana observability platform
 
 ### grafana_admin_disable
 
-Payload used to demote admins
+Roles mapping for Keycloak authentication
 
 #### Default value
 
@@ -247,7 +257,7 @@ grafana_domain:
 #### Example usage
 
 ```YAML
-grafana_domain: https://grafana.example.com
+grafana_domain: grafana.example.com
 ```
 
 ### grafana_install_plugins
@@ -275,6 +285,45 @@ grafana_instance:
 
 ```YAML
 grafana_instance: Example
+```
+
+### grafana_keycloak_client
+
+Client id for Keycloak authentication
+
+#### Default value
+
+```YAML
+grafana_keycloak_client:
+```
+
+### grafana_keycloak_roles
+
+#### Default value
+
+```YAML
+grafana_keycloak_roles: contains(roles[*], '/admin') && 'Admin' || contains(roles[*],
+  '/grafana') && 'Editor' || 'Viewer'
+```
+
+### grafana_keycloak_secret
+
+Client secret for Keycloak authentication
+
+#### Default value
+
+```YAML
+grafana_keycloak_secret:
+```
+
+### grafana_keycloak_url
+
+Keycloak URL for OAuth2 authentication
+
+#### Default value
+
+```YAML
+grafana_keycloak_url:
 ```
 
 ### grafana_org_create
@@ -469,4 +518,4 @@ Apache-2.0
 
 ## Author
 
-[Thomas Boerger](https://gitlab.proact.eu.com/detbo)
+[Thomas Boerger](https://github.com/tboerger)
