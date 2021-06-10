@@ -1,6 +1,6 @@
 # grafana
 
-[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/grafana) [![Build Status](https://img.shields.io/drone/build/rolehippie/grafana/master?logo=drone)](https://cloud.drone.io/rolehippie/grafana) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/grafana)](https://github.com/rolehippie/grafana/blob/master/LICENSE) 
+[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/grafana) [![Testing Build](https://github.com/rolehippie/grafana/workflows/testing/badge.svg)](https://github.com/rolehippie/grafana/actions?query=workflow%3Atesting) [![Readme Build](https://github.com/rolehippie/grafana/workflows/readme/badge.svg)](https://github.com/rolehippie/grafana/actions?query=workflow%3Areadme) [![Galaxy Build](https://github.com/rolehippie/grafana/workflows/galaxy/badge.svg)](https://github.com/rolehippie/grafana/actions?query=workflow%3Agalaxy) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/grafana)](https://github.com/rolehippie/grafana/blob/master/LICENSE) 
 
 Ansible role to install and configure Grafana observability platform. 
 
@@ -302,8 +302,7 @@ grafana_keycloak_client:
 #### Default value
 
 ```YAML
-grafana_keycloak_roles: contains(roles[*], '/admin') && 'Admin' || contains(roles[*],
-  '/grafana') && 'Editor' || 'Viewer'
+grafana_keycloak_roles:
 ```
 
 ### grafana_keycloak_secret
