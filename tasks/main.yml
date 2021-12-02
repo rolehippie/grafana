@@ -96,7 +96,7 @@
   when:
     - grafana_plugins_list.stdout is defined
     - item not in grafana_plugins_list.stdout
-    - item.state | default('present') == 'absent'
+    - item.state | default('present') == 'present'
   notify:
     - Restart grafana
   command: "grafana-cli plugins install {{ item.name | default(item) }}"
