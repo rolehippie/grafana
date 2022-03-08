@@ -1,59 +1,60 @@
 # grafana
 
-[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/grafana) [![Testing Build](https://github.com/rolehippie/grafana/workflows/testing/badge.svg)](https://github.com/rolehippie/grafana/actions?query=workflow%3Atesting) [![Readme Build](https://github.com/rolehippie/grafana/workflows/readme/badge.svg)](https://github.com/rolehippie/grafana/actions?query=workflow%3Areadme) [![Galaxy Build](https://github.com/rolehippie/grafana/workflows/galaxy/badge.svg)](https://github.com/rolehippie/grafana/actions?query=workflow%3Agalaxy) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/grafana)](https://github.com/rolehippie/grafana/blob/master/LICENSE) 
+[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/grafana) [![Testing Build](https://github.com/rolehippie/grafana/workflows/testing/badge.svg)](https://github.com/rolehippie/grafana/actions?query=workflow%3Atesting) [![Readme Build](https://github.com/rolehippie/grafana/workflows/readme/badge.svg)](https://github.com/rolehippie/grafana/actions?query=workflow%3Areadme) [![Galaxy Build](https://github.com/rolehippie/grafana/workflows/galaxy/badge.svg)](https://github.com/rolehippie/grafana/actions?query=workflow%3Agalaxy) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/grafana)](https://github.com/rolehippie/grafana/blob/master/LICENSE)
 
-Ansible role to install and configure Grafana observability platform. 
+Ansible role to install and configure Grafana observability platform.
 
-## Sponsor 
+## Sponsor
 
-[![Proact Deutschland GmbH](https://proact.eu/wp-content/uploads/2020/03/proact-logo.png)](https://proact.eu) 
+[![Proact Deutschland GmbH](https://proact.eu/wp-content/uploads/2020/03/proact-logo.png)](https://proact.eu)
 
 Building and improving this Ansible role have been sponsored by my employer **Proact Deutschland GmbH**.
 
 ## Table of content
 
-* [Default Variables](#default-variables)
-  * [grafana_admin_disable](#grafana_admin_disable)
-  * [grafana_admin_enable](#grafana_admin_enable)
-  * [grafana_admins](#grafana_admins)
-  * [grafana_allow_signup](#grafana_allow_signup)
-  * [grafana_anonymous_auth](#grafana_anonymous_auth)
-  * [grafana_assign_auto](#grafana_assign_auto)
-  * [grafana_assign_org](#grafana_assign_org)
-  * [grafana_assign_role](#grafana_assign_role)
-  * [grafana_datasources](#grafana_datasources)
-  * [grafana_db_host](#grafana_db_host)
-  * [grafana_db_name](#grafana_db_name)
-  * [grafana_db_password](#grafana_db_password)
-  * [grafana_db_path](#grafana_db_path)
-  * [grafana_db_type](#grafana_db_type)
-  * [grafana_db_username](#grafana_db_username)
-  * [grafana_disable_signin](#grafana_disable_signin)
-  * [grafana_disable_signout](#grafana_disable_signout)
-  * [grafana_domain](#grafana_domain)
-  * [grafana_install_plugins](#grafana_install_plugins)
-  * [grafana_instance](#grafana_instance)
-  * [grafana_keycloak_client](#grafana_keycloak_client)
-  * [grafana_keycloak_roles](#grafana_keycloak_roles)
-  * [grafana_keycloak_secret](#grafana_keycloak_secret)
-  * [grafana_keycloak_url](#grafana_keycloak_url)
-  * [grafana_org_create](#grafana_org_create)
-  * [grafana_organization](#grafana_organization)
-  * [grafana_organizations](#grafana_organizations)
-  * [grafana_password](#grafana_password)
-  * [grafana_providers](#grafana_providers)
-  * [grafana_repo_release](#grafana_repo_release)
-  * [grafana_secret](#grafana_secret)
-  * [grafana_smtp_address](#grafana_smtp_address)
-  * [grafana_smtp_enabled](#grafana_smtp_enabled)
-  * [grafana_smtp_host](#grafana_smtp_host)
-  * [grafana_smtp_name](#grafana_smtp_name)
-  * [grafana_smtp_password](#grafana_smtp_password)
-  * [grafana_smtp_user](#grafana_smtp_user)
-  * [grafana_username](#grafana_username)
-* [Dependencies](#dependencies)
-* [License](#license)
-* [Author](#author)
+- [Default Variables](#default-variables)
+  - [grafana_admin_disable](#grafana_admin_disable)
+  - [grafana_admin_enable](#grafana_admin_enable)
+  - [grafana_admins](#grafana_admins)
+  - [grafana_allow_signup](#grafana_allow_signup)
+  - [grafana_anonymous_auth](#grafana_anonymous_auth)
+  - [grafana_assign_auto](#grafana_assign_auto)
+  - [grafana_assign_org](#grafana_assign_org)
+  - [grafana_assign_role](#grafana_assign_role)
+  - [grafana_datasources](#grafana_datasources)
+  - [grafana_db_host](#grafana_db_host)
+  - [grafana_db_name](#grafana_db_name)
+  - [grafana_db_password](#grafana_db_password)
+  - [grafana_db_path](#grafana_db_path)
+  - [grafana_db_type](#grafana_db_type)
+  - [grafana_db_username](#grafana_db_username)
+  - [grafana_disable_signin](#grafana_disable_signin)
+  - [grafana_disable_signout](#grafana_disable_signout)
+  - [grafana_domain](#grafana_domain)
+  - [grafana_install_plugins](#grafana_install_plugins)
+  - [grafana_instance](#grafana_instance)
+  - [grafana_keycloak_client](#grafana_keycloak_client)
+  - [grafana_keycloak_roles](#grafana_keycloak_roles)
+  - [grafana_keycloak_secret](#grafana_keycloak_secret)
+  - [grafana_keycloak_url](#grafana_keycloak_url)
+  - [grafana_org_create](#grafana_org_create)
+  - [grafana_organization](#grafana_organization)
+  - [grafana_organizations](#grafana_organizations)
+  - [grafana_password](#grafana_password)
+  - [grafana_providers](#grafana_providers)
+  - [grafana_repo_release](#grafana_repo_release)
+  - [grafana_secret](#grafana_secret)
+  - [grafana_smtp_address](#grafana_smtp_address)
+  - [grafana_smtp_enabled](#grafana_smtp_enabled)
+  - [grafana_smtp_host](#grafana_smtp_host)
+  - [grafana_smtp_name](#grafana_smtp_name)
+  - [grafana_smtp_password](#grafana_smtp_password)
+  - [grafana_smtp_user](#grafana_smtp_user)
+  - [grafana_username](#grafana_username)
+- [Discovered Tags](#discovered-tags)
+- [Dependencies](#dependencies)
+- [License](#license)
+- [Author](#author)
 
 ---
 
@@ -507,9 +508,14 @@ grafana_username:
 grafana_username: admin
 ```
 
+## Discovered Tags
+
+**_grafana_**
+
+
 ## Dependencies
 
-* None
+- None
 
 ## License
 
