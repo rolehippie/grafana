@@ -32,6 +32,9 @@
   template:
     src: providers.j2
     dest: /etc/grafana/provisioning/dashboards/default.yml
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - grafana
 
@@ -41,6 +44,9 @@
   template:
     src: datasources.j2
     dest: /etc/grafana/provisioning/datasources/default.yml
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - grafana
 
@@ -50,6 +56,9 @@
   template:
     src: default.j2
     dest: /etc/default/grafana-server
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - grafana
 
@@ -59,6 +68,9 @@
   template:
     src: config.j2
     dest: /etc/grafana/grafana.ini
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - grafana
 
@@ -68,6 +80,9 @@
   template:
     src: ldap.j2
     dest: /etc/grafana/grafana.ini
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - grafana
 
