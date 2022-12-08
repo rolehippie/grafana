@@ -81,6 +81,10 @@ GF_METRICS_ENABLED=true
 
 GF_ALERTING_ENABLED=true
 GF_ALERTING_EXECUTE_ALERTS=true
+{% if grafana_installation == 'docker' %}
+
+GF_INSTALL_PLUGINS={{ grafana_install_plugins | join(',') }}
+{% endif %}
 {% if grafana_keycloak_url | default(False) %}
 
 GF_AUTH_GENERIC_OAUTH_ENABLED=true
