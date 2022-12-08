@@ -1,7 +1,73 @@
 # Standards: 1.2
 ---
+# @var grafana_installation:description: Select installation method, could be native or docker
+grafana_installation: native
+
 # @var grafana_repo_release:description: Enforce another release for the repo
 grafana_repo_release: stable
+
+# @var grafana_version:description: Version of docker release to use
+# renovate: datasource=github-releases depName=grafana/grafana
+grafana_version: 9.3.1
+
+# @var grafana_image:description: Docker image to use for deployment
+grafana_image: "grafana/grafana:{{ grafana_version }}"
+
+# @var grafana_network:description: Optional docker network to attach
+grafana_network:
+
+# @var grafana_default_publish:description: List of default port publishing for docker
+# @var grafana_default_publish:example: >
+# grafana_default_publish:
+#   - 127.0.0.1:3000:3000
+# @end
+grafana_default_publish: []
+
+# @var grafana_extra_publish:description: List of extra port publishing for docker
+# @var grafana_extra_publish:example: >
+# grafana_extra_publish:
+#   - 127.0.0.1:3000:3000
+# @end
+grafana_extra_publish: []
+
+# @var grafana_default_labels:description: List of default labels to assign to docker
+grafana_default_labels: []
+
+# @var grafana_extra_labels:description: List of extra labels to assign to docker
+grafana_extra_labels: []
+
+# @var grafana_default_folders:description: List of default folders to create
+grafana_default_folders:
+  - /etc/grafana
+  - /etc/grafana/provisioning
+  - /etc/grafana/provisioning/dashboards
+  - /etc/grafana/provisioning/datasources
+  - /var/lib/grafana
+  - /var/lib/grafana/plugins
+  - /var/lib/grafana/dashboards
+
+# @var grafana_extra_folders:description: List of extra folders to create
+# @var grafana_extra_folders:example: >
+# grafana_extra_folders:
+#   - /path/to/host/folder1
+#   - /path/to/host/folder2
+#   - /path/to/host/folder3
+# @end
+grafana_extra_folders: []
+
+# @var grafana_default_volumes:description: List of default volumes to mount for docker
+grafana_default_volumes:
+  - /var/lib/grafana:/var/lib/grafana
+  - /etc/grafana:/etc/grafana
+
+# @var grafana_extra_volumes:description: List of extra volumes to mount for docker
+# @var grafana_extra_volumes:example: >
+# grafana_extra_volumes:
+#   - /path/to/host/folder1:/path/within/container1
+#   - /path/to/host/folder2:/path/within/container2
+#   - /path/to/host/folder3:/path/within/container3
+# @end
+grafana_extra_volumes: []
 
 # @var grafana_domain:description: Domain for external access
 # @var grafana_domain:example: $ "grafana.example.com"

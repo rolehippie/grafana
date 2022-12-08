@@ -2,7 +2,7 @@
 ---
 - name: Restart grafana
   systemd:
-    name: grafana-server
+    name: "{{ 'grafana-server' if grafana_installation == 'native' else 'grafana' }}"
     state: restarted
     daemon_reload: yes
 
