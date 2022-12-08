@@ -42,6 +42,9 @@ grafana_default_folders:
   - /etc/grafana/provisioning
   - /etc/grafana/provisioning/dashboards
   - /etc/grafana/provisioning/datasources
+  - /etc/grafana/provisioning/plugins
+  - /etc/grafana/provisioning/alerting
+  - /etc/grafana/provisioning/notifiers
   - /var/lib/grafana
   - /var/lib/grafana/plugins
   - /var/lib/grafana/dashboards
