@@ -217,4 +217,46 @@ grafana_keycloak_secret:
 # @var grafana_admin_disable:description: Roles mapping for Keycloak authentication
 grafana_keycloak_roles:
 
+# @var grafana_oauth2_enable:description:
+grafana_oauth2_enable: False
+
+# @var grafana_oauth2_name:description:
+grafana_oauth2_name:
+
+# @var grafana_oauth2_allow_signup:description:
+grafana_oauth2_allow_signup: True
+
+# @var grafana_oauth2_client:description:
+grafana_oauth2_client:
+
+# @var grafana_oauth2_secret:description:
+grafana_oauth2_secret:
+
+# @var grafana_oauth2_scopes:description:
+grafana_oauth2_scopes: openid profile email
+
+# @var grafana_oauth2_auth_url:description:
+grafana_oauth2_auth_url:
+
+# @var grafana_oauth2_token_url:description:
+grafana_oauth2_token_url:
+
+# @var grafana_oauth2_api_url:description:
+grafana_oauth2_api_url:
+
+# @var grafana_oauth2_redirect_url:description:
+grafana_oauth2_redirect_url:
+
+# @var grafana_oauth2_email_attribute:description:
+grafana_oauth2_email_attribute: email
+
+# @var grafana_oauth2_login_attribute:description:
+grafana_oauth2_login_attribute: preferred_username
+
+# @var grafana_oauth2_name_attribute:description:
+grafana_oauth2_name_attribute: name
+
+# @var grafana_oauth2_roles:description: Roles mapping for Keycloak authentication
+grafana_oauth2_roles:
+
 ...
