@@ -1,0 +1,17 @@
+# Standards: 1.2
+---
+- name: Converge
+  hosts: all
+  vars:
+    grafana_domain: localhost
+    grafana_instance: Example
+    grafana_username: admin
+    grafana_password: p455w0rd
+    grafana_secret: s3cr3t
+    grafana_organization: Example
+    grafana_db_type: sqlite3
+    grafana_db_path: /var/lib/grafana/database.sqlite3
+  roles:
+    - role: rolehippie.grafana
+
+...

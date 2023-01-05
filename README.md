@@ -1,6 +1,6 @@
 # grafana
 
-[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/grafana) [![Testing Build](https://github.com/rolehippie/grafana/workflows/testing/badge.svg)](https://github.com/rolehippie/grafana/actions?query=workflow%3Atesting) [![Readme Build](https://github.com/rolehippie/grafana/workflows/readme/badge.svg)](https://github.com/rolehippie/grafana/actions?query=workflow%3Areadme) [![Galaxy Build](https://github.com/rolehippie/grafana/workflows/galaxy/badge.svg)](https://github.com/rolehippie/grafana/actions?query=workflow%3Agalaxy) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/grafana)](https://github.com/rolehippie/grafana/blob/master/LICENSE)
+[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/grafana) [![General Workflow](https://github.com/rolehippie/grafana/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/general.yml) [![Readme Workflow](https://github.com/rolehippie/grafana/actions/workflows/readme.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/readme.yml) [![Galaxy Workflow](https://github.com/rolehippie/grafana/actions/workflows/galaxy.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/galaxy.yml) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/grafana)](https://github.com/rolehippie/grafana/blob/master/LICENSE) ![Ansible Role](https://img.shields.io/ansible/role/55292)
 
 Ansible role to install and configure Grafana observability platform.
 
@@ -26,15 +26,40 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [grafana_db_path](#grafana_db_path)
   - [grafana_db_type](#grafana_db_type)
   - [grafana_db_username](#grafana_db_username)
+  - [grafana_default_folders](#grafana_default_folders)
+  - [grafana_default_labels](#grafana_default_labels)
+  - [grafana_default_publish](#grafana_default_publish)
+  - [grafana_default_volumes](#grafana_default_volumes)
   - [grafana_disable_signin](#grafana_disable_signin)
   - [grafana_disable_signout](#grafana_disable_signout)
   - [grafana_domain](#grafana_domain)
+  - [grafana_extra_folders](#grafana_extra_folders)
+  - [grafana_extra_labels](#grafana_extra_labels)
+  - [grafana_extra_publish](#grafana_extra_publish)
+  - [grafana_extra_volumes](#grafana_extra_volumes)
+  - [grafana_image](#grafana_image)
   - [grafana_install_plugins](#grafana_install_plugins)
+  - [grafana_installation](#grafana_installation)
   - [grafana_instance](#grafana_instance)
   - [grafana_keycloak_client](#grafana_keycloak_client)
   - [grafana_keycloak_roles](#grafana_keycloak_roles)
   - [grafana_keycloak_secret](#grafana_keycloak_secret)
   - [grafana_keycloak_url](#grafana_keycloak_url)
+  - [grafana_network](#grafana_network)
+  - [grafana_oauth2_allow_signup](#grafana_oauth2_allow_signup)
+  - [grafana_oauth2_api_url](#grafana_oauth2_api_url)
+  - [grafana_oauth2_auth_url](#grafana_oauth2_auth_url)
+  - [grafana_oauth2_client](#grafana_oauth2_client)
+  - [grafana_oauth2_email_attribute](#grafana_oauth2_email_attribute)
+  - [grafana_oauth2_enable](#grafana_oauth2_enable)
+  - [grafana_oauth2_login_attribute](#grafana_oauth2_login_attribute)
+  - [grafana_oauth2_name](#grafana_oauth2_name)
+  - [grafana_oauth2_name_attribute](#grafana_oauth2_name_attribute)
+  - [grafana_oauth2_redirect_url](#grafana_oauth2_redirect_url)
+  - [grafana_oauth2_roles](#grafana_oauth2_roles)
+  - [grafana_oauth2_scopes](#grafana_oauth2_scopes)
+  - [grafana_oauth2_secret](#grafana_oauth2_secret)
+  - [grafana_oauth2_token_url](#grafana_oauth2_token_url)
   - [grafana_org_create](#grafana_org_create)
   - [grafana_organization](#grafana_organization)
   - [grafana_organizations](#grafana_organizations)
@@ -49,6 +74,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [grafana_smtp_password](#grafana_smtp_password)
   - [grafana_smtp_user](#grafana_smtp_user)
   - [grafana_username](#grafana_username)
+  - [grafana_version](#grafana_version)
 - [Discovered Tags](#discovered-tags)
 - [Dependencies](#dependencies)
 - [License](#license)
@@ -223,6 +249,65 @@ Username for the database connection
 grafana_db_username:
 ```
 
+### grafana_default_folders
+
+List of default folders to create
+
+#### Default value
+
+```YAML
+grafana_default_folders:
+  - /etc/grafana
+  - /etc/grafana/provisioning
+  - /etc/grafana/provisioning/dashboards
+  - /etc/grafana/provisioning/datasources
+  - /etc/grafana/provisioning/plugins
+  - /etc/grafana/provisioning/alerting
+  - /etc/grafana/provisioning/notifiers
+  - /var/lib/grafana
+  - /var/lib/grafana/plugins
+  - /var/lib/grafana/dashboards
+```
+
+### grafana_default_labels
+
+List of default labels to assign to docker
+
+#### Default value
+
+```YAML
+grafana_default_labels: []
+```
+
+### grafana_default_publish
+
+List of default port publishing for docker
+
+#### Default value
+
+```YAML
+grafana_default_publish: []
+```
+
+#### Example usage
+
+```YAML
+grafana_default_publish:
+  - 127.0.0.1:3000:3000
+```
+
+### grafana_default_volumes
+
+List of default volumes to mount for docker
+
+#### Default value
+
+```YAML
+grafana_default_volumes:
+  - /var/lib/grafana:/var/lib/grafana
+  - /etc/grafana:/etc/grafana
+```
+
 ### grafana_disable_signin
 
 Disable the regular signin of users
@@ -259,6 +344,81 @@ grafana_domain:
 grafana_domain: grafana.example.com
 ```
 
+### grafana_extra_folders
+
+List of extra folders to create
+
+#### Default value
+
+```YAML
+grafana_extra_folders: []
+```
+
+#### Example usage
+
+```YAML
+grafana_extra_folders:
+  - /path/to/host/folder1
+  - /path/to/host/folder2
+  - /path/to/host/folder3
+```
+
+### grafana_extra_labels
+
+List of extra labels to assign to docker
+
+#### Default value
+
+```YAML
+grafana_extra_labels: []
+```
+
+### grafana_extra_publish
+
+List of extra port publishing for docker
+
+#### Default value
+
+```YAML
+grafana_extra_publish: []
+```
+
+#### Example usage
+
+```YAML
+grafana_extra_publish:
+  - 127.0.0.1:3000:3000
+```
+
+### grafana_extra_volumes
+
+List of extra volumes to mount for docker
+
+#### Default value
+
+```YAML
+grafana_extra_volumes: []
+```
+
+#### Example usage
+
+```YAML
+grafana_extra_volumes:
+  - /path/to/host/folder1:/path/within/container1
+  - /path/to/host/folder2:/path/within/container2
+  - /path/to/host/folder3:/path/within/container3
+```
+
+### grafana_image
+
+Docker image to use for deployment
+
+#### Default value
+
+```YAML
+grafana_image: grafana/grafana:{{ grafana_version }}
+```
+
 ### grafana_install_plugins
 
 List of plugins to install
@@ -268,6 +428,16 @@ List of plugins to install
 ```YAML
 grafana_install_plugins:
   - grafana-piechart-panel
+```
+
+### grafana_installation
+
+Select installation method, could be native or docker
+
+#### Default value
+
+```YAML
+grafana_installation: native
 ```
 
 ### grafana_instance
@@ -322,6 +492,156 @@ Keycloak URL for OAuth2 authentication
 
 ```YAML
 grafana_keycloak_url:
+```
+
+### grafana_network
+
+Optional docker network to attach
+
+#### Default value
+
+```YAML
+grafana_network:
+```
+
+### grafana_oauth2_allow_signup
+
+
+
+#### Default value
+
+```YAML
+grafana_oauth2_allow_signup: true
+```
+
+### grafana_oauth2_api_url
+
+
+
+#### Default value
+
+```YAML
+grafana_oauth2_api_url:
+```
+
+### grafana_oauth2_auth_url
+
+
+
+#### Default value
+
+```YAML
+grafana_oauth2_auth_url:
+```
+
+### grafana_oauth2_client
+
+
+
+#### Default value
+
+```YAML
+grafana_oauth2_client:
+```
+
+### grafana_oauth2_email_attribute
+
+
+
+#### Default value
+
+```YAML
+grafana_oauth2_email_attribute: email
+```
+
+### grafana_oauth2_enable
+
+
+
+#### Default value
+
+```YAML
+grafana_oauth2_enable: false
+```
+
+### grafana_oauth2_login_attribute
+
+
+
+#### Default value
+
+```YAML
+grafana_oauth2_login_attribute: preferred_username
+```
+
+### grafana_oauth2_name
+
+
+
+#### Default value
+
+```YAML
+grafana_oauth2_name:
+```
+
+### grafana_oauth2_name_attribute
+
+
+
+#### Default value
+
+```YAML
+grafana_oauth2_name_attribute: name
+```
+
+### grafana_oauth2_redirect_url
+
+
+
+#### Default value
+
+```YAML
+grafana_oauth2_redirect_url:
+```
+
+### grafana_oauth2_roles
+
+Roles mapping for Keycloak authentication
+
+#### Default value
+
+```YAML
+grafana_oauth2_roles:
+```
+
+### grafana_oauth2_scopes
+
+
+
+#### Default value
+
+```YAML
+grafana_oauth2_scopes: openid profile email
+```
+
+### grafana_oauth2_secret
+
+
+
+#### Default value
+
+```YAML
+grafana_oauth2_secret:
+```
+
+### grafana_oauth2_token_url
+
+
+
+#### Default value
+
+```YAML
+grafana_oauth2_token_url:
 ```
 
 ### grafana_org_create
@@ -506,6 +826,16 @@ grafana_username:
 grafana_username: admin
 ```
 
+### grafana_version
+
+Version of docker release to use
+
+#### Default value
+
+```YAML
+grafana_version: 9.3.1
+```
+
 ## Discovered Tags
 
 **_grafana_**
@@ -513,7 +843,7 @@ grafana_username: admin
 
 ## Dependencies
 
-- None
+- [rolehippie.docker](https://github.com/rolehippie/docker)
 
 ## License
 
