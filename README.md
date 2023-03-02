@@ -1,6 +1,11 @@
 # grafana
 
-[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/grafana) [![General Workflow](https://github.com/rolehippie/grafana/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/general.yml) [![Readme Workflow](https://github.com/rolehippie/grafana/actions/workflows/readme.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/readme.yml) [![Galaxy Workflow](https://github.com/rolehippie/grafana/actions/workflows/galaxy.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/galaxy.yml) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/grafana)](https://github.com/rolehippie/grafana/blob/master/LICENSE) [![Ansible Role](https://img.shields.io/ansible/role/55292)](https://galaxy.ansible.com/rolehippie/grafana)
+[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&amp;logoColor=white)](https://github.com/rolehippie/grafana)
+[![General Workflow](https://github.com/rolehippie/grafana/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/general.yml)
+[![Readme Workflow](https://github.com/rolehippie/grafana/actions/workflows/readme.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/readme.yml)
+[![Galaxy Workflow](https://github.com/rolehippie/grafana/actions/workflows/galaxy.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/galaxy.yml)
+[![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/grafana)](https://github.com/rolehippie/grafana/blob/master/LICENSE)
+[![Ansible Role](https://img.shields.io/ansible/role/55292)](https://galaxy.ansible.com/rolehippie/grafana)
 
 Ansible role to install and configure Grafana observability platform.
 
@@ -833,7 +838,7 @@ Version of docker release to use
 #### Default value
 
 ```YAML
-grafana_version: 9.3.6
+grafana_version: 9.4.1
 ```
 
 ## Discovered Tags
