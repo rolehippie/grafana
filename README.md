@@ -5,7 +5,7 @@
 [![Readme Workflow](https://github.com/rolehippie/grafana/actions/workflows/readme.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/readme.yml)
 [![Galaxy Workflow](https://github.com/rolehippie/grafana/actions/workflows/galaxy.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/galaxy.yml)
 [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/grafana)](https://github.com/rolehippie/grafana/blob/master/LICENSE)
-[![Ansible Role](https://img.shields.io/ansible/role/55292)](https://galaxy.ansible.com/rolehippie/grafana)
+[![Ansible Role](https://img.shields.io/badge/role-rolehippie.grafana-blue)](https://galaxy.ansible.com/rolehippie/grafana)
 
 Ansible role to install and configure Grafana observability platform.
 
