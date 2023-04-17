@@ -51,6 +51,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [grafana_keycloak_roles](#grafana_keycloak_roles)
   - [grafana_keycloak_secret](#grafana_keycloak_secret)
   - [grafana_keycloak_url](#grafana_keycloak_url)
+  - [grafana_keyring](#grafana_keyring)
   - [grafana_network](#grafana_network)
   - [grafana_oauth2_allow_signup](#grafana_oauth2_allow_signup)
   - [grafana_oauth2_api_url](#grafana_oauth2_api_url)
@@ -503,6 +504,16 @@ Keycloak URL for OAuth2 authentication
 
 ```YAML
 grafana_keycloak_url:
+```
+
+### grafana_keyring
+
+Path for the repository keyring
+
+#### Default value
+
+```YAML
+grafana_keyring: /usr/share/keyrings/grafana-archive-keyring.gpg
 ```
 
 ### grafana_network
