@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/rolehippie/grafana/compare/v1.1.2...v1.2.0) (2023-04-17)
+
+
+### Features
+
+* use unified path for repo key and drop legacy key ([8d95b3e](https://github.com/rolehippie/grafana/commit/8d95b3e668f72207e2d3e14fccf685ebec36192c))
+
 ## [1.1.2](https://github.com/rolehippie/grafana/compare/v1.1.1...v1.1.2) (2023-03-27)
 
 
