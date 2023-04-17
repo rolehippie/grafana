@@ -259,4 +259,7 @@ grafana_oauth2_name_attribute: name
 # @var grafana_oauth2_roles:description: Roles mapping for Keycloak authentication
 grafana_oauth2_roles:
 
+# @var grafana_keyring:description: Path for the repository keyring
+grafana_keyring: /usr/share/keyrings/grafana-archive-keyring.gpg
+
 ...
