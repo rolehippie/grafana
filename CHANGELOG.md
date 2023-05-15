@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/rolehippie/grafana/compare/v1.3.0...v1.3.1) (2023-05-15)
+
+
+### Bugfixes
+
+* **deps:** update dependency grafana/grafana to v9.5.2 ([491cd67](https://github.com/rolehippie/grafana/commit/491cd671b564b86028d31f10d09f25ba913a6570))
+
 ## [1.3.0](https://github.com/rolehippie/grafana/compare/v1.2.0...v1.3.0) (2023-05-01)
 
 
