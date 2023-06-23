@@ -855,7 +855,7 @@ Version of docker release to use
 #### Default value
 
 ```YAML
-grafana_version: 9.5.5
+grafana_version: 10.0.1
 ```
 
 ## Discovered Tags
