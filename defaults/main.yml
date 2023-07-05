@@ -217,46 +217,49 @@ grafana_keycloak_secret:
 # @var grafana_admin_disable:description: Roles mapping for Keycloak authentication
 grafana_keycloak_roles:
 
-# @var grafana_oauth2_enable:description:
+# @var grafana_keycloak_scopes:description: Scope used by Keycloak authentication
+grafana_keycloak_scopes: openid profile email
+
+# @var grafana_oauth2_enable:description: Enable generic OAuth2 authentication
 grafana_oauth2_enable: False
 
-# @var grafana_oauth2_name:description:
+# @var grafana_oauth2_name:description: Name for OAuth2 authentication
 grafana_oauth2_name:
 
-# @var grafana_oauth2_allow_signup:description:
+# @var grafana_oauth2_allow_signup:description:Allow signup via OAuth2 authentication
 grafana_oauth2_allow_signup: True
 
-# @var grafana_oauth2_client:description:
+# @var grafana_oauth2_client:description: Client for OAuth2 authentication
 grafana_oauth2_client:
 
-# @var grafana_oauth2_secret:description:
+# @var grafana_oauth2_secret:description: Secret for OAuth2 authentication
 grafana_oauth2_secret:
 
-# @var grafana_oauth2_scopes:description:
+# @var grafana_oauth2_scopes:description: Scopes used by OAuth2 authentication
 grafana_oauth2_scopes: openid profile email
 
-# @var grafana_oauth2_auth_url:description:
+# @var grafana_oauth2_auth_url:description: Auth URL for OAuth2 authentication
 grafana_oauth2_auth_url:
 
-# @var grafana_oauth2_token_url:description:
+# @var grafana_oauth2_token_url:description: Token URL for OAuth2 authentication
 grafana_oauth2_token_url:
 
-# @var grafana_oauth2_api_url:description:
+# @var grafana_oauth2_api_url:description: API URL for OAuth2 authentication
 grafana_oauth2_api_url:
 
-# @var grafana_oauth2_redirect_url:description:
+# @var grafana_oauth2_redirect_url:description: Redirect URL for OAuth2 authentication
 grafana_oauth2_redirect_url:
 
-# @var grafana_oauth2_email_attribute:description:
+# @var grafana_oauth2_email_attribute:description: Email attribute for OAuth2 authentication
 grafana_oauth2_email_attribute: email
 
-# @var grafana_oauth2_login_attribute:description:
+# @var grafana_oauth2_login_attribute:description: Login attribute for OAuth2 authentication
 grafana_oauth2_login_attribute: preferred_username
 
-# @var grafana_oauth2_name_attribute:description:
+# @var grafana_oauth2_name_attribute:description: Name attribute for OAuth2 authentication
 grafana_oauth2_name_attribute: name
 
-# @var grafana_oauth2_roles:description: Roles mapping for Keycloak authentication
+# @var grafana_oauth2_roles:description: Roles mapping for OAuth2 authentication
 grafana_oauth2_roles:
 
 # @var grafana_keyring:description: Path for the repository keyring

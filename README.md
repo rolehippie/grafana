@@ -49,6 +49,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [grafana_instance](#grafana_instance)
   - [grafana_keycloak_client](#grafana_keycloak_client)
   - [grafana_keycloak_roles](#grafana_keycloak_roles)
+  - [grafana_keycloak_scopes](#grafana_keycloak_scopes)
   - [grafana_keycloak_secret](#grafana_keycloak_secret)
   - [grafana_keycloak_url](#grafana_keycloak_url)
   - [grafana_keyring](#grafana_keyring)
@@ -486,6 +487,16 @@ grafana_keycloak_client:
 grafana_keycloak_roles:
 ```
 
+### grafana_keycloak_scopes
+
+Scope used by Keycloak authentication
+
+#### Default value
+
+```YAML
+grafana_keycloak_scopes: openid profile email
+```
+
 ### grafana_keycloak_secret
 
 Client secret for Keycloak authentication
@@ -528,7 +539,7 @@ grafana_network:
 
 ### grafana_oauth2_allow_signup
 
-
+Allow signup via OAuth2 authentication
 
 #### Default value
 
@@ -538,7 +549,7 @@ grafana_oauth2_allow_signup: true
 
 ### grafana_oauth2_api_url
 
-
+API URL for OAuth2 authentication
 
 #### Default value
 
@@ -548,7 +559,7 @@ grafana_oauth2_api_url:
 
 ### grafana_oauth2_auth_url
 
-
+Auth URL for OAuth2 authentication
 
 #### Default value
 
@@ -558,7 +569,7 @@ grafana_oauth2_auth_url:
 
 ### grafana_oauth2_client
 
-
+Client for OAuth2 authentication
 
 #### Default value
 
@@ -568,7 +579,7 @@ grafana_oauth2_client:
 
 ### grafana_oauth2_email_attribute
 
-
+Email attribute for OAuth2 authentication
 
 #### Default value
 
@@ -578,7 +589,7 @@ grafana_oauth2_email_attribute: email
 
 ### grafana_oauth2_enable
 
-
+Enable generic OAuth2 authentication
 
 #### Default value
 
@@ -588,7 +599,7 @@ grafana_oauth2_enable: false
 
 ### grafana_oauth2_login_attribute
 
-
+Login attribute for OAuth2 authentication
 
 #### Default value
 
@@ -598,7 +609,7 @@ grafana_oauth2_login_attribute: preferred_username
 
 ### grafana_oauth2_name
 
-
+Name for OAuth2 authentication
 
 #### Default value
 
@@ -608,7 +619,7 @@ grafana_oauth2_name:
 
 ### grafana_oauth2_name_attribute
 
-
+Name attribute for OAuth2 authentication
 
 #### Default value
 
@@ -618,7 +629,7 @@ grafana_oauth2_name_attribute: name
 
 ### grafana_oauth2_redirect_url
 
-
+Redirect URL for OAuth2 authentication
 
 #### Default value
 
@@ -628,7 +639,7 @@ grafana_oauth2_redirect_url:
 
 ### grafana_oauth2_roles
 
-Roles mapping for Keycloak authentication
+Roles mapping for OAuth2 authentication
 
 #### Default value
 
@@ -638,7 +649,7 @@ grafana_oauth2_roles:
 
 ### grafana_oauth2_scopes
 
-
+Scopes used by OAuth2 authentication
 
 #### Default value
 
@@ -648,7 +659,7 @@ grafana_oauth2_scopes: openid profile email
 
 ### grafana_oauth2_secret
 
-
+Secret for OAuth2 authentication
 
 #### Default value
 
@@ -658,7 +669,7 @@ grafana_oauth2_secret:
 
 ### grafana_oauth2_token_url
 
-
+Token URL for OAuth2 authentication
 
 #### Default value
 
