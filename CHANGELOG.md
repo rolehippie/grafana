@@ -7,6 +7,13 @@
 
 * add option for keycloak scopes, fix docs ([32123f3](https://github.com/rolehippie/grafana/commit/32123f37231d02d19bd5d1b928980622c2c10e9f))
 
+## [2.1.0](https://github.com/rolehippie/grafana/compare/v2.0.0...v2.1.0) (2023-07-05)
+
+
+### Features
+
+* add option for keycloak scopes, fix docs ([32123f3](https://github.com/rolehippie/grafana/commit/32123f37231d02d19bd5d1b928980622c2c10e9f))
+
 ## [2.0.0](https://github.com/rolehippie/grafana/compare/v1.3.2...v2.0.0) (2023-06-26)
 
 
