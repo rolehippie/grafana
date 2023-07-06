@@ -73,6 +73,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [grafana_organizations](#grafana_organizations)
   - [grafana_password](#grafana_password)
   - [grafana_providers](#grafana_providers)
+  - [grafana_pull_image](#grafana_pull_image)
   - [grafana_repo_release](#grafana_repo_release)
   - [grafana_secret](#grafana_secret)
   - [grafana_smtp_address](#grafana_smtp_address)
@@ -755,6 +756,16 @@ grafana_providers:
     updateIntervalSeconds: 10
     options:
       path: /var/lib/grafana/dashboards
+```
+
+### grafana_pull_image
+
+Pull image as part of the tasks
+
+#### Default value
+
+```YAML
+grafana_pull_image: true
 ```
 
 ### grafana_repo_release

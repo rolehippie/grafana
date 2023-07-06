@@ -13,6 +13,9 @@ grafana_version: 10.0.1
 # @var grafana_image:description: Docker image to use for deployment
 grafana_image: "grafana/grafana:{{ grafana_version }}"
 
+# @var grafana_pull_image:description: Pull image as part of the tasks
+grafana_pull_image: True
+
 # @var grafana_network:description: Optional docker network to attach
 grafana_network:
 

@@ -171,6 +171,25 @@
   tags:
     - grafana
 
+- name: Pull docker image
+  when:
+    - grafana_installation == 'docker'
+    - grafana_pull_image
+  docker_image:
+    name: "{{ grafana_image }}"
+    source: pull
+  tags:
+    - grafana
+
+- name: Create docker network
+  when:
+    - grafana_installation == 'docker'
+    - grafana_network | default(False)
+  docker_network:
+    name: '{{ grafana_network }}'
+  tags:
+    - grafana
+
 - name: Start grafana service
   systemd:
     name: "{{ 'grafana-server' if grafana_installation == 'native' else 'grafana' }}"
