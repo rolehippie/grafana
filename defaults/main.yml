@@ -229,8 +229,11 @@ grafana_oauth2_enable: False
 # @var grafana_oauth2_name:description: Name for OAuth2 authentication
 grafana_oauth2_name:
 
-# @var grafana_oauth2_allow_signup:description:Allow signup via OAuth2 authentication
+# @var grafana_oauth2_allow_signup:description: Allow signup via OAuth2 authentication
 grafana_oauth2_allow_signup: True
+
+# @var grafana_oauth2_allow_assign_admin:description: Allow to assign Grafana admin via OAuth2 authentication
+grafana_oauth2_allow_assign_admin: True
 
 # @var grafana_oauth2_client:description: Client for OAuth2 authentication
 grafana_oauth2_client:
