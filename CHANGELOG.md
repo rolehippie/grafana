@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/rolehippie/grafana/compare/v2.2.0...v2.3.0) (2023-07-10)
+
+
+### Features
+
+* add flag to allow assign grafana admins ([7d670e5](https://github.com/rolehippie/grafana/commit/7d670e5e41b04375fab92a8e678fc12aa4a7956c))
+
 ## [2.2.0](https://github.com/rolehippie/grafana/compare/v2.1.0...v2.2.0) (2023-07-10)
 
 
