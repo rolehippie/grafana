@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/rolehippie/grafana/compare/v2.1.0...v2.2.0) (2023-07-10)
+
+
+### Features
+
+* move image pull to tasks from service and create network ([d085d6b](https://github.com/rolehippie/grafana/commit/d085d6b043c8679a0f5f03e2314a0aae56da1d01))
+
 ## [2.1.0](https://github.com/rolehippie/grafana/compare/v2.0.0...v2.1.0) (2023-07-05)
 
 
