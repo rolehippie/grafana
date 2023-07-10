@@ -20,6 +20,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [grafana_admin_disable](#grafana_admin_disable)
   - [grafana_admin_enable](#grafana_admin_enable)
   - [grafana_admins](#grafana_admins)
+  - [grafana_allow_insecure_email_lookup](#grafana_allow_insecure_email_lookup)
   - [grafana_allow_signup](#grafana_allow_signup)
   - [grafana_anonymous_auth](#grafana_anonymous_auth)
   - [grafana_assign_auto](#grafana_assign_auto)
@@ -39,6 +40,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [grafana_disable_signin](#grafana_disable_signin)
   - [grafana_disable_signout](#grafana_disable_signout)
   - [grafana_domain](#grafana_domain)
+  - [grafana_email](#grafana_email)
   - [grafana_extra_folders](#grafana_extra_folders)
   - [grafana_extra_labels](#grafana_extra_labels)
   - [grafana_extra_publish](#grafana_extra_publish)
@@ -129,6 +131,16 @@ List of admin users
 
 ```YAML
 grafana_admins: []
+```
+
+### grafana_allow_insecure_email_lookup
+
+Allow insecure email lookup for OAuth2 authentication
+
+#### Default value
+
+```YAML
+grafana_allow_insecure_email_lookup: false
 ```
 
 ### grafana_allow_signup
@@ -357,6 +369,22 @@ grafana_domain:
 
 ```YAML
 grafana_domain: grafana.example.com
+```
+
+### grafana_email
+
+Email for initial admin
+
+#### Default value
+
+```YAML
+grafana_email:
+```
+
+#### Example usage
+
+```YAML
+grafana_email: admin@example.com
 ```
 
 ### grafana_extra_folders

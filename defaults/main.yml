@@ -91,6 +91,10 @@ grafana_username:
 # @var grafana_password:example: $ "p455w0rd"
 grafana_password:
 
+# @var grafana_email:description: Email for initial admin
+# @var grafana_email:example: $ "admin@example.com"
+grafana_email:
+
 # @var grafana_secret:description: Secret for initial admin
 # @var grafana_secret:example: $ "s3cr37"
 grafana_secret:
@@ -122,6 +126,9 @@ grafana_disable_signout: False
 
 # @var grafana_anonymous_auth:description: Allow anonymous users access
 grafana_anonymous_auth: False
+
+# @var grafana_allow_insecure_email_lookup:description: Allow insecure email lookup for OAuth2 authentication
+grafana_allow_insecure_email_lookup: False
 
 # @var grafana_smtp_enabled:description: Enable sending mails via SMTP
 grafana_smtp_enabled: True

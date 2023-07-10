@@ -44,6 +44,9 @@ GF_DATABASE_PATH={{ grafana_db_path }}
 
 GF_SECURITY_ADMIN_USER={{ grafana_username }}
 GF_SECURITY_ADMIN_PASSWORD={{ grafana_password }}
+{% if grafana_email | default(False) %}
+GF_SECURITY_ADMIN_EMAIL={{ grafana_email }}
+{% endif %}
 GF_SECURITY_SECRET_KEY={{ grafana_secret }}
 GF_SECURITY_COOKIE_USERNAME=username
 GF_SECURITY_COOKIE_REMEMBER_NAME=remember
@@ -57,6 +60,7 @@ GF_USERS_AUTO_ASSIGN_ORG_ROLE={{ grafana_assign_role }}
 GF_AUTH_DISABLE_LOGIN_FORM={{ grafana_disable_signin | lower }}
 GF_AUTH_DISABLE_SIGNOUT_MENU={{ grafana_disable_signout | lower }}
 GF_AUTH_ANONYMOUS_ENABLED={{ grafana_anonymous_auth | lower }}
+GF_AUTH_OAUTH_ALLOW_INSECURE_EMAIL_LOOKUP={{ grafana_allow_insecure_email_lookup | lower }}
 
 GF_SESSION_PROVIDER=file
 GF_SESSION_PROVIDER_CONFIG=/var/lib/grafana/sessions
