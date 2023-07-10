@@ -54,6 +54,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [grafana_keycloak_url](#grafana_keycloak_url)
   - [grafana_keyring](#grafana_keyring)
   - [grafana_network](#grafana_network)
+  - [grafana_oauth2_allow_assign_admin](#grafana_oauth2_allow_assign_admin)
   - [grafana_oauth2_allow_signup](#grafana_oauth2_allow_signup)
   - [grafana_oauth2_api_url](#grafana_oauth2_api_url)
   - [grafana_oauth2_auth_url](#grafana_oauth2_auth_url)
@@ -536,6 +537,16 @@ Optional docker network to attach
 
 ```YAML
 grafana_network:
+```
+
+### grafana_oauth2_allow_assign_admin
+
+Allow to assign Grafana admin via OAuth2 authentication
+
+#### Default value
+
+```YAML
+grafana_oauth2_allow_assign_admin: true
 ```
 
 ### grafana_oauth2_allow_signup
