@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.0](https://github.com/rolehippie/grafana/compare/v2.4.0...v2.5.0) (2023-07-18)
+
+
+### Features
+
+* use oauth defaults to configure keycloak auth ([8ddd326](https://github.com/rolehippie/grafana/commit/8ddd3260e2951cfa3039c907edf0c00e840998ce))
+
 ## [2.4.0](https://github.com/rolehippie/grafana/compare/v2.3.0...v2.4.0) (2023-07-10)
 
 
