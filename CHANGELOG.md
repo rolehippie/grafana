@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.0](https://github.com/rolehippie/grafana/compare/v2.6.0...v2.7.0) (2023-08-24)
+
+
+### Features
+
+* disable admin and org management ([ce5de2a](https://github.com/rolehippie/grafana/commit/ce5de2ac08d526a3827e023989b780e84283c344))
+
 ## [2.6.0](https://github.com/rolehippie/grafana/compare/v2.5.2...v2.6.0) (2023-08-24)
 
 
