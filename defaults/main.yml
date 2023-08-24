@@ -75,6 +75,26 @@ grafana_default_volumes:
 # @end
 grafana_extra_volumes: []
 
+# @var grafana_memory_limit:description: Memory limit with Docker deployment
+# @var grafana_memory_limit:example: $ "1024m"
+grafana_memory_limit:
+
+# @var grafana_memory_swap:description: Swap usage with Docker deployment
+# @var grafana_memory_swap:example: $ "2048m"
+grafana_memory_swap:
+
+# @var grafana_memory_soft_limit:description: Soft memory limit with Docker deployment
+# @var grafana_memory_soft_limit:example: $ "512m"
+grafana_memory_soft_limit:
+
+# @var grafana_cpu_shares:description: CPU shares with Docker deployment
+# @var grafana_cpu_shares:example: $ "512"
+grafana_cpu_shares:
+
+# @var grafana_number_of_cpus:description: Number of CPUs with Docker deployment
+# @var grafana_number_of_cpus:example: $ "1.0"
+grafana_number_of_cpus:
+
 # @var grafana_domain:description: Domain for external access
 # @var grafana_domain:example: $ "grafana.example.com"
 grafana_domain:

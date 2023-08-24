@@ -2,7 +2,7 @@
 
 [![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&amp;logoColor=white)](https://github.com/rolehippie/grafana)
 [![General Workflow](https://github.com/rolehippie/grafana/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/general.yml)
-[![Readme Workflow](https://github.com/rolehippie/grafana/actions/workflows/readme.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/readme.yml)
+[![Readme Workflow](https://github.com/rolehippie/grafana/actions/workflows/docs.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/docs.yml)
 [![Galaxy Workflow](https://github.com/rolehippie/grafana/actions/workflows/galaxy.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/galaxy.yml)
 [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/grafana)](https://github.com/rolehippie/grafana/blob/master/LICENSE)
 [![Ansible Role](https://img.shields.io/badge/role-rolehippie.grafana-blue)](https://galaxy.ansible.com/rolehippie/grafana)
@@ -26,6 +26,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [grafana_assign_auto](#grafana_assign_auto)
   - [grafana_assign_org](#grafana_assign_org)
   - [grafana_assign_role](#grafana_assign_role)
+  - [grafana_cpu_shares](#grafana_cpu_shares)
   - [grafana_datasources](#grafana_datasources)
   - [grafana_db_host](#grafana_db_host)
   - [grafana_db_name](#grafana_db_name)
@@ -55,7 +56,11 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [grafana_keycloak_secret](#grafana_keycloak_secret)
   - [grafana_keycloak_url](#grafana_keycloak_url)
   - [grafana_keyring](#grafana_keyring)
+  - [grafana_memory_limit](#grafana_memory_limit)
+  - [grafana_memory_soft_limit](#grafana_memory_soft_limit)
+  - [grafana_memory_swap](#grafana_memory_swap)
   - [grafana_network](#grafana_network)
+  - [grafana_number_of_cpus](#grafana_number_of_cpus)
   - [grafana_oauth2_allow_assign_admin](#grafana_oauth2_allow_assign_admin)
   - [grafana_oauth2_allow_signup](#grafana_oauth2_allow_signup)
   - [grafana_oauth2_api_url](#grafana_oauth2_api_url)
@@ -191,6 +196,22 @@ Standard role which gets automatically assigned
 
 ```YAML
 grafana_assign_role: Viewer
+```
+
+### grafana_cpu_shares
+
+CPU shares with Docker deployment
+
+#### Default value
+
+```YAML
+grafana_cpu_shares:
+```
+
+#### Example usage
+
+```YAML
+grafana_cpu_shares: '512'
 ```
 
 ### grafana_datasources
@@ -557,6 +578,54 @@ Path for the repository keyring
 grafana_keyring: /usr/share/keyrings/grafana-archive-keyring.gpg
 ```
 
+### grafana_memory_limit
+
+Memory limit with Docker deployment
+
+#### Default value
+
+```YAML
+grafana_memory_limit:
+```
+
+#### Example usage
+
+```YAML
+grafana_memory_limit: 1024m
+```
+
+### grafana_memory_soft_limit
+
+Soft memory limit with Docker deployment
+
+#### Default value
+
+```YAML
+grafana_memory_soft_limit:
+```
+
+#### Example usage
+
+```YAML
+grafana_memory_soft_limit: 512m
+```
+
+### grafana_memory_swap
+
+Swap usage with Docker deployment
+
+#### Default value
+
+```YAML
+grafana_memory_swap:
+```
+
+#### Example usage
+
+```YAML
+grafana_memory_swap: 2048m
+```
+
 ### grafana_network
 
 Optional docker network to attach
@@ -565,6 +634,22 @@ Optional docker network to attach
 
 ```YAML
 grafana_network:
+```
+
+### grafana_number_of_cpus
+
+Number of CPUs with Docker deployment
+
+#### Default value
+
+```YAML
+grafana_number_of_cpus:
+```
+
+#### Example usage
+
+```YAML
+grafana_number_of_cpus: '1.0'
 ```
 
 ### grafana_oauth2_allow_assign_admin
