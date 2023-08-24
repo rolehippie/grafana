@@ -190,8 +190,14 @@ grafana_db_path:
 grafana_install_plugins:
   - grafana-piechart-panel
 
+# @var grafana_manage_admins:description: Enable management of admins
+grafana_manage_admins: False
+
 # @var grafana_admins:description: List of admin users
 grafana_admins: []
+
+# @var grafana_manage_orgs:description: Enable management of organizations
+grafana_manage_orgs: False
 
 # @var grafana_organizations:description: List of organizations
 # @var grafana_organizations:example: >

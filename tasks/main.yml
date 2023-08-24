@@ -206,7 +206,8 @@
     - grafana
 
 - name: Configure grafana service
-  when: not ansible_check_mode
+  when:
+    - not ansible_check_mode
   block:
     - name: Wait for start
       register: result
@@ -214,13 +215,15 @@
       retries: 60
       delay: 5
       uri:
-        url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}"
+        url: "{{ 'http://localhost:3000/healthz' if grafana_installation == 'native' else 'https://'+grafana_domain+'/healthz' }}"
         status_code: 200
       tags:
         - grafana
 
     - name: Check existing users
       register: grafana_existing_users
+      when:
+        - grafana_manage_admins
       uri:
         url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/users"
         user: "{{ grafana_username }}"
@@ -233,7 +236,10 @@
 
     - name: Revoke admin access
       loop: "{{ grafana_existing_users.json | map(attribute='login') | list }}"
-      when: item != grafana_username and item not in grafana_admins
+      when:
+        - grafana_manage_admins
+        - item != grafana_username
+        - item not in grafana_admins
       uri:
         url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/admin/users/{{ grafana_existing_users.json | selectattr('login', 'equalto', item) | map(attribute='id') | first }}/permissions"
         user: "{{ grafana_username }}"
@@ -247,7 +253,9 @@
 
     - name: Promote admin access
       loop: "{{ grafana_admins }}"
-      when: ((grafana_existing_users.json | selectattr('login', 'equalto', item)) | list) | length != 0
+      when:
+        - grafana_manage_admins
+        - ((grafana_existing_users.json | selectattr('login', 'equalto', item)) | list) | length != 0
       uri:
         url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/admin/users/{{ grafana_existing_users.json | selectattr('login', 'equalto', item) | map(attribute='id') | first }}/permissions"
         user: "{{ grafana_username }}"
@@ -261,6 +269,8 @@
 
     - name: Check existing orgs
       register: grafana_existing_orgs
+      when:
+        - grafana_manage_orgs
       uri:
         url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/orgs"
         user: "{{ grafana_username }}"
@@ -273,7 +283,9 @@
 
     - name: Create additional orgs
       loop: "{{ grafana_organizations }}"
-      when: ((grafana_existing_orgs.json | selectattr('name', 'equalto', item)) | list) | length == 0
+      when:
+        - grafana_manage_orgs
+        - ((grafana_existing_orgs.json | selectattr('name', 'equalto', item)) | list) | length == 0
       uri:
         url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/orgs"
         user: "{{ grafana_username }}"

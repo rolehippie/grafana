@@ -56,6 +56,8 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [grafana_keycloak_secret](#grafana_keycloak_secret)
   - [grafana_keycloak_url](#grafana_keycloak_url)
   - [grafana_keyring](#grafana_keyring)
+  - [grafana_manage_admins](#grafana_manage_admins)
+  - [grafana_manage_orgs](#grafana_manage_orgs)
   - [grafana_memory_limit](#grafana_memory_limit)
   - [grafana_memory_soft_limit](#grafana_memory_soft_limit)
   - [grafana_memory_swap](#grafana_memory_swap)
@@ -576,6 +578,26 @@ Path for the repository keyring
 
 ```YAML
 grafana_keyring: /usr/share/keyrings/grafana-archive-keyring.gpg
+```
+
+### grafana_manage_admins
+
+Enable management of admins
+
+#### Default value
+
+```YAML
+grafana_manage_admins: false
+```
+
+### grafana_manage_orgs
+
+Enable management of organizations
+
+#### Default value
+
+```YAML
+grafana_manage_orgs: false
 ```
 
 ### grafana_memory_limit
