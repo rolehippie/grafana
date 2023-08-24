@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.6.0](https://github.com/rolehippie/grafana/compare/v2.5.2...v2.6.0) (2023-08-24)
+
+
+### Features
+
+* add optional defaults for cpu and memory limit ([4ce2336](https://github.com/rolehippie/grafana/commit/4ce233645d0324b12aaa1f801441821a17faae93))
+* **deps:** update dependency grafana/grafana to v10.1.0 ([7411518](https://github.com/rolehippie/grafana/commit/7411518733d350027fc6331978cf1a2dbeadbad9))
+
 ## [2.5.2](https://github.com/rolehippie/grafana/compare/v2.5.1...v2.5.2) (2023-07-31)
 
 
