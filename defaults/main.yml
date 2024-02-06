@@ -1,4 +1,3 @@
-# Standards: 1.2
 ---
 # @var grafana_installation:description: Select installation method, could be native or docker
 grafana_installation: native

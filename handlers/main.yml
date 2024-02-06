@@ -1,7 +1,6 @@
-# Standards: 1.2
 ---
 - name: Restart grafana
-  systemd:
+  ansible.builtin.systemd:
     name: "{{ 'grafana-server' if grafana_installation == 'native' else 'grafana' }}"
     state: restarted
     daemon_reload: yes
