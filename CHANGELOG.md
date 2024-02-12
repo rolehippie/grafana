@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.0.0](https://github.com/rolehippie/grafana/compare/v2.9.0...v3.0.0) (2024-02-12)
+
+
+### Features
+
+* drop support for ubuntu 18.04 ([e328239](https://github.com/rolehippie/grafana/commit/e32823980d42276a77145d79b6d2552a0754a65b))
+* used full qualified collection names ([4412f8d](https://github.com/rolehippie/grafana/commit/4412f8d36eb57f76df4d3f6d990c72f21944a230))
+
+
+### Bugfixes
+
+* remove meta requirements and document used collections ([446752e](https://github.com/rolehippie/grafana/commit/446752e5aabd166a764b43550960ca5eeaa5a844))
+
 ## [2.9.0](https://github.com/rolehippie/grafana/compare/v2.8.3...v2.9.0) (2024-01-29)
 
 
