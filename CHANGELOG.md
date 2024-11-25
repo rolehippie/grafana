@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.3.1](https://github.com/rolehippie/grafana/compare/v4.3.0...v4.3.1) (2024-11-25)
+
+
+### Bugfixes
+
+* **deps:** update dependency grafana/grafana to v11.3.1 ([#63](https://github.com/rolehippie/grafana/issues/63)) ([0636164](https://github.com/rolehippie/grafana/commit/06361647556e8ed67b98d0e4d2a8c18ceb5e87f9))
+
 ## [4.3.0](https://github.com/rolehippie/grafana/compare/v4.2.2...v4.3.0) (2024-10-28)
 
 
