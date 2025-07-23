@@ -1,4 +1,4 @@
-# grafana
+# workspace
 
 [![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/grafana)
 [![General Workflow](https://github.com/rolehippie/grafana/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/general.yml)
@@ -1022,13 +1022,12 @@ Version of docker release to use
 #### Default value
 
 ```YAML
-grafana_version: 12.0.2
+grafana_version: 12.1.0
 ```
 
 ## Discovered Tags
 
 **_grafana_**
-
 
 ## Dependencies
 
