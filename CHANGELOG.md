@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/rolehippie/grafana/compare/v5.0.2...v5.1.0) (2025-07-28)
+
+
+### Features
+
+* **deps:** update dependency grafana/grafana to v12.1.0 ([#77](https://github.com/rolehippie/grafana/issues/77)) ([29a50d4](https://github.com/rolehippie/grafana/commit/29a50d49007b60ea9c7db1ae146d48b261d9ebbe))
+
 ## [5.0.2](https://github.com/rolehippie/grafana/compare/v5.0.1...v5.0.2) (2025-06-23)
 
 
