@@ -14,7 +14,7 @@
   ansible.builtin.apt_repository:
     repo: "deb https://packages.grafana.com/oss/deb {{ grafana_repo_release }} main"
     filename: grafana
-    update_cache: False
+    update_cache: false
     state: absent
   tags:
     - grafana
@@ -34,7 +34,7 @@
   ansible.builtin.apt_repository:
     repo: "deb [signed-by={{ grafana_keyring }}] https://packages.grafana.com/oss/deb {{ grafana_repo_release }} main"
     filename: grafana
-    update_cache: True
+    update_cache: true
     state: present
   tags:
     - grafana
@@ -125,7 +125,7 @@
   when:
     - grafana_installation == 'native'
   register: grafana_plugins_list
-  changed_when: False
+  changed_when: false
   ansible.builtin.command: grafana-cli plugins ls
   tags:
     - grafana
@@ -183,7 +183,7 @@
 - name: Create docker network
   when:
     - grafana_installation == 'docker'
-    - grafana_network | default(False)
+    - false if grafana_network is none else (grafana_network | length > 0)| default(false)
   community.docker.docker_network:
     name: '{{ grafana_network }}'
   tags:
@@ -193,7 +193,7 @@
   ansible.builtin.systemd:
     name: "{{ 'grafana-server' if grafana_installation == 'native' else 'grafana' }}"
     state: started
-    daemon_reload: yes
+    daemon_reload: true
     masked: no
     enabled: yes
   tags:
@@ -227,9 +227,9 @@
         url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/users"
         user: "{{ grafana_username }}"
         password: "{{ grafana_password }}"
-        force_basic_auth: True
+        force_basic_auth: true
         method: GET
-        return_content: True
+        return_content: true
       tags:
         - grafana
 
@@ -243,7 +243,7 @@
         url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/admin/users/{{ grafana_existing_users.json | selectattr('login', 'equalto', item) | map(attribute='id') | first }}/permissions"
         user: "{{ grafana_username }}"
         password: "{{ grafana_password }}"
-        force_basic_auth: True
+        force_basic_auth: true
         method: PUT
         body_format: json
         body: '{{ grafana_admin_disable | to_json }}'
@@ -259,7 +259,7 @@
         url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/admin/users/{{ grafana_existing_users.json | selectattr('login', 'equalto', item) | map(attribute='id') | first }}/permissions"
         user: "{{ grafana_username }}"
         password: "{{ grafana_password }}"
-        force_basic_auth: True
+        force_basic_auth: true
         method: PUT
         body_format: json
         body: "{{ grafana_admin_enable | to_json }}"
@@ -274,9 +274,9 @@
         url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/orgs"
         user: "{{ grafana_username }}"
         password: "{{ grafana_password }}"
-        force_basic_auth: True
+        force_basic_auth: true
         method: GET
-        return_content: True
+        return_content: true
       tags:
         - grafana
 
@@ -289,7 +289,7 @@
         url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/orgs"
         user: "{{ grafana_username }}"
         password: "{{ grafana_password }}"
-        force_basic_auth: True
+        force_basic_auth: true
         method: POST
         body_format: json
         body: |
@@ -304,7 +304,7 @@
         url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/orgs/1"
         user: "{{ grafana_username }}"
         password: "{{ grafana_password }}"
-        force_basic_auth: True
+        force_basic_auth: true
         method: PUT
         body_format: json
         body: |

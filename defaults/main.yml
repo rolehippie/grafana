@@ -13,7 +13,7 @@ grafana_version: 12.2.0
 grafana_image: "grafana/grafana:{{ grafana_version }}"
 
 # @var grafana_pull_image:description: Pull image as part of the tasks
-grafana_pull_image: True
+grafana_pull_image: true
 
 # @var grafana_network:description: Optional docker network to attach
 grafana_network:
@@ -123,13 +123,13 @@ grafana_secret:
 grafana_organization:
 
 # @var grafana_allow_signup:description: Allow signup of new users
-grafana_allow_signup: False
+grafana_allow_signup: false
 
 # @var grafana_org_create:description: Allow users to create organizations
-grafana_org_create: False
+grafana_org_create: false
 
 # @var grafana_assign_auto:description: Automatically assign an organization to users
-grafana_assign_auto: True
+grafana_assign_auto: true
 
 # @var grafana_assign_org:description: OD of the organization to automatically assign
 grafana_assign_org: 1
@@ -138,19 +138,19 @@ grafana_assign_org: 1
 grafana_assign_role: Viewer
 
 # @var grafana_disable_signin:description: Disable the regular signin of users
-grafana_disable_signin: False
+grafana_disable_signin: false
 
 # @var grafana_disable_signout:description: Disable the regular signout of users
-grafana_disable_signout: False
+grafana_disable_signout: false
 
 # @var grafana_anonymous_auth:description: Allow anonymous users access
-grafana_anonymous_auth: False
+grafana_anonymous_auth: false
 
 # @var grafana_allow_insecure_email_lookup:description: Allow insecure email lookup for OAuth2 authentication
-grafana_allow_insecure_email_lookup: False
+grafana_allow_insecure_email_lookup: false
 
 # @var grafana_smtp_enabled:description: Enable sending mails via SMTP
-grafana_smtp_enabled: True
+grafana_smtp_enabled: true
 
 # @var grafana_smtp_host:description: Host for sending mails via SMTP
 grafana_smtp_host:
@@ -190,13 +190,13 @@ grafana_install_plugins:
   - grafana-piechart-panel
 
 # @var grafana_manage_admins:description: Enable management of admins
-grafana_manage_admins: False
+grafana_manage_admins: false
 
 # @var grafana_admins:description: List of admin users
 grafana_admins: []
 
 # @var grafana_manage_orgs:description: Enable management of organizations
-grafana_manage_orgs: False
+grafana_manage_orgs: false
 
 # @var grafana_organizations:description: List of organizations
 # @var grafana_organizations:example: >
@@ -214,7 +214,7 @@ grafana_providers:
     folder: ''
     folderUid: ''
     type: file
-    disableDeletion: False
+    disableDeletion: false
     updateIntervalSeconds: 10
     options:
       path: /var/lib/grafana/dashboards
@@ -227,18 +227,18 @@ grafana_providers:
 #     access: proxy
 #     url: http://localhost:9090
 #     orgId: 1
-#     isDefault: True
-#     editable: False
+#     isDefault: true
+#     editable: false
 # @end
 grafana_datasources: []
 
 # @var grafana_admin_enable:description: Payload used to promote admins
 grafana_admin_enable:
-  isGrafanaAdmin: True
+  isGrafanaAdmin: true
 
 # @var grafana_admin_disable:description: Payload used to demote admins
 grafana_admin_disable:
-  isGrafanaAdmin: False
+  isGrafanaAdmin: false
 
 # @var grafana_keycloak_url:description: Keycloak URL for OAuth2 authentication
 grafana_keycloak_url:
@@ -256,16 +256,16 @@ grafana_keycloak_roles:
 grafana_keycloak_scopes: openid profile email
 
 # @var grafana_oauth2_enable:description: Enable generic OAuth2 authentication
-grafana_oauth2_enable: False
+grafana_oauth2_enable: false
 
 # @var grafana_oauth2_name:description: Name for OAuth2 authentication
 grafana_oauth2_name:
 
 # @var grafana_oauth2_allow_signup:description: Allow signup via OAuth2 authentication
-grafana_oauth2_allow_signup: True
+grafana_oauth2_allow_signup: true
 
 # @var grafana_oauth2_allow_assign_admin:description: Allow to assign Grafana admin via OAuth2 authentication
-grafana_oauth2_allow_assign_admin: True
+grafana_oauth2_allow_assign_admin: true
 
 # @var grafana_oauth2_client:description: Client for OAuth2 authentication
 grafana_oauth2_client:

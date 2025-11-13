@@ -1,4 +1,4 @@
-# workspace
+# grafana
 
 [![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/grafana)
 [![General Workflow](https://github.com/rolehippie/grafana/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/grafana/actions/workflows/general.yml)
@@ -234,8 +234,8 @@ grafana_datasources:
     access: proxy
     url: http://localhost:9090
     orgId: 1
-    isDefault: True
-    editable: False
+    isDefault: true
+    editable: false
 ```
 
 ### grafana_db_host

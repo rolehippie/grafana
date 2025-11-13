@@ -26,25 +26,25 @@ GF_SERVER_ROOT_URL=https://{{ grafana_domain }}
 GF_SERVER_ENABLE_GZIP=true
 
 GF_DATABASE_TYPE={{ grafana_db_type }}
-{% if grafana_db_host | default(False) %}
+{% if grafana_db_host | default(false) %}
 GF_DATABASE_HOST={{ grafana_db_host }}
 {% endif %}
-{% if grafana_db_name | default(False) %}
+{% if grafana_db_name | default(false) %}
 GF_DATABASE_NAME={{ grafana_db_name }}
 {% endif %}
-{% if grafana_db_username | default(False) %}
+{% if grafana_db_username | default(false) %}
 GF_DATABASE_USER={{ grafana_db_username }}
 {% endif %}
-{% if grafana_db_password | default(False) %}
+{% if grafana_db_password | default(false) %}
 GF_DATABASE_PASSWORD={{ grafana_db_password }}
 {% endif %}
-{% if grafana_db_path | default(False) %}
+{% if grafana_db_path | default(false) %}
 GF_DATABASE_PATH={{ grafana_db_path }}
 {% endif %}
 
 GF_SECURITY_ADMIN_USER={{ grafana_username }}
 GF_SECURITY_ADMIN_PASSWORD={{ grafana_password }}
-{% if grafana_email | default(False) %}
+{% if grafana_email | default(false) %}
 GF_SECURITY_ADMIN_EMAIL={{ grafana_email }}
 {% endif %}
 GF_SECURITY_SECRET_KEY={{ grafana_secret }}
@@ -69,10 +69,10 @@ GF_SESSION_COOKIE_SECURE=true
 
 GF_SMTP_ENABLED={{ grafana_smtp_enabled | lower }}
 GF_SMTP_HOST={{ grafana_smtp_host }}
-{% if grafana_smtp_user | default(False) %}
+{% if grafana_smtp_user | default(false) %}
 GF_SMTP_USER={{ grafana_smtp_user }}
 {% endif %}
-{% if grafana_smtp_password | default(False) %}
+{% if grafana_smtp_password | default(false) %}
 GF_SMTP_PASSWORD={{ grafana_smtp_password }}
 {% endif %}
 GF_SMTP_FROM_ADDRESS={{ grafana_smtp_address }}
@@ -89,7 +89,7 @@ GF_ALERTING_EXECUTE_ALERTS=true
 
 GF_INSTALL_PLUGINS={{ grafana_install_plugins | join(',') }}
 {% endif %}
-{% if grafana_keycloak_url | default(False) %}
+{% if grafana_keycloak_url | default(false) %}
 
 GF_AUTH_GENERIC_OAUTH_ENABLED=true
 GF_AUTH_GENERIC_OAUTH_NAME=Keycloak
@@ -107,7 +107,7 @@ GF_AUTH_GENERIC_OAUTH_LOGIN_ATTRIBUTE_PATH=preferred_username
 GF_AUTH_GENERIC_OAUTH_NAME_ATTRIBUTE_PATH=name
 GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH={{ grafana_keycloak_roles }}
 {% endif %}
-{% if grafana_oauth2_enable | default(False) %}
+{% if grafana_oauth2_enable | default(false) %}
 
 GF_AUTH_GENERIC_OAUTH_ENABLED=true
 GF_AUTH_GENERIC_OAUTH_NAME={{ grafana_oauth2_name }}
@@ -119,7 +119,7 @@ GF_AUTH_GENERIC_OAUTH_SCOPES={{ grafana_oauth2_scopes }}
 GF_AUTH_GENERIC_OAUTH_AUTH_URL={{ grafana_oauth2_auth_url }}
 GF_AUTH_GENERIC_OAUTH_TOKEN_URL={{ grafana_oauth2_token_url }}
 GF_AUTH_GENERIC_OAUTH_API_URL={{ grafana_oauth2_api_url }}
-{% if grafana_oauth2_redirect_url | default(False) %}
+{% if grafana_oauth2_redirect_url | default(false) %}
 GF_AUTH_SIGNOUT_REDIRECT_URL={{ grafana_oauth2_redirect_url }}
 {% endif %}
 

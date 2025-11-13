@@ -1,4 +1,4 @@
 apiVersion: 1
 
 providers:
-  {{ grafana_providers | to_nice_yaml(indent=2) | indent(width=2, first=False) }}
+  {{ grafana_providers | to_nice_yaml(indent=2) | indent(width=2, first=false) }}
