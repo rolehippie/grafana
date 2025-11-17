@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.0](https://github.com/rolehippie/grafana/compare/v5.2.0...v5.3.0) (2025-11-17)
+
+
+### Features
+
+* apply new repo structure and update linting ([54b33bb](https://github.com/rolehippie/grafana/commit/54b33bbdabacd938940c4b84b6fc5dbef99cd1af))
+
 ## [5.2.0](https://github.com/rolehippie/grafana/compare/v5.1.1...v5.2.0) (2025-09-29)
 
 
