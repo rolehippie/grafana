@@ -22,6 +22,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [grafana_admins](#grafana_admins)
   - [grafana_allow_insecure_email_lookup](#grafana_allow_insecure_email_lookup)
   - [grafana_allow_signup](#grafana_allow_signup)
+  - [grafana_angular_support_enabled](#grafana_angular_support_enabled)
   - [grafana_anonymous_auth](#grafana_anonymous_auth)
   - [grafana_assign_auto](#grafana_assign_auto)
   - [grafana_assign_org](#grafana_assign_org)
@@ -157,6 +158,16 @@ Allow signup of new users
 
 ```YAML
 grafana_allow_signup: false
+```
+
+### grafana_angular_support_enabled
+
+Controls if old angular plugins are supported or not.
+
+#### Default value
+
+```YAML
+grafana_angular_support_enabled: false
 ```
 
 ### grafana_anonymous_auth

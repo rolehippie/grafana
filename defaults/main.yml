@@ -118,6 +118,9 @@ grafana_email:
 # @var grafana_secret:example: $ "s3cr37"
 grafana_secret:
 
+# @var grafana_angular_support_enabled:description: Controls if old angular plugins are supported or not.
+grafana_angular_support_enabled: false
+
 # @var grafana_organization:description: Name of the primary organization
 # @var grafana_organization:example: $ "Example"
 grafana_organization:
