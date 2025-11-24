@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.4.0](https://github.com/rolehippie/grafana/compare/v5.3.0...v5.4.0) (2025-11-24)
+
+
+### Features
+
+* add variable to enable angular support ([b661870](https://github.com/rolehippie/grafana/commit/b6618703989ba9fc68a04125a956d331d3c694d0))
+
 ## [5.3.0](https://github.com/rolehippie/grafana/compare/v5.2.0...v5.3.0) (2025-11-17)
 
 
