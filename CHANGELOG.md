@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.0.0](https://github.com/rolehippie/grafana/compare/v5.4.0...v6.0.0) (2025-12-01)
+
+
+### Features
+
+* **major:** update dependency community.docker to v5 ([dd28aa2](https://github.com/rolehippie/grafana/commit/dd28aa2bcdab9ada24596fb1b5fc8c1593ffcfe6))
+* **minor:** update dependency grafana/grafana to v12.3.0 ([7613ae5](https://github.com/rolehippie/grafana/commit/7613ae5ca3117707d4c697fbeaa98aaa2da9dd3b))
+
 ## [5.4.0](https://github.com/rolehippie/grafana/compare/v5.3.0...v5.4.0) (2025-11-24)
 
 
