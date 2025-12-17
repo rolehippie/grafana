@@ -1,0 +1,20 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    docker_daemon_config:
+      storage-driver: vfs
+    grafana_installation: docker
+    grafana_domain: localhost
+    grafana_instance: Example
+    grafana_username: admin
+    grafana_password: p455w0rd
+    grafana_secret: s3cr3t
+    grafana_organization: Example
+    grafana_db_type: sqlite3
+    grafana_db_path: /var/lib/grafana/database.sqlite3
+  roles:
+    - role: rolehippie.docker
+    - role: rolehippie.grafana
+
+...
