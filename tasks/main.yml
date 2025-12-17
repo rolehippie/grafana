@@ -1,13 +1,4 @@
 ---
-- name: Remove legacy key
-  when:
-    - grafana_installation == 'native'
-  ansible.builtin.apt_key:
-    id: 4E40DDF6D76E284A4A6780E48C8C34C524098CB6
-    state: absent
-  tags:
-    - grafana
-
 - name: Remove legacy repo
   when:
     - grafana_installation == 'native'
@@ -19,12 +10,44 @@
   tags:
     - grafana
 
+- name: Remove legacy key
+  when:
+    - grafana_installation == 'native'
+  ansible.builtin.apt_key:
+    id: 4E40DDF6D76E284A4A6780E48C8C34C524098CB6
+    state: absent
+  tags:
+    - grafana
+
 - name: Download repo key
   when:
     - grafana_installation == 'native'
-  ansible.builtin.shell:
-    cmd: "curl -sSL 'https://packages.grafana.com/gpg.key' | gpg --dearmor --output {{ grafana_keyring }}"
-    creates: "{{ grafana_keyring }}"
+  register: grafana_key_download
+  ansible.builtin.get_url:
+    url: https://packages.grafana.com/gpg.key
+    dest: "{{ grafana_keyring }}.asc"
+    mode: u=rw,g=r,o=r
+    force: true
+  tags:
+    - grafana
+
+- name: Check repo key
+  when:
+    - grafana_installation == 'native'
+  register: grafana_key_status
+  ansible.builtin.stat:
+    path: "{{ grafana_keyring }}"
+  tags:
+    - grafana
+
+- name: Dearmor repo key
+  when:
+    - grafana_installation == 'native'
+    - grafana_key_download.changed or not grafana_key_status.stat.exists
+  register: grafana_key_convert
+  changed_when: grafana_key_convert.rc == 0
+  ansible.builtin.command:
+    cmd: "gpg --dearmor -o {{ grafana_keyring }} {{ grafana_keyring }}.asc"
   tags:
     - grafana
 
@@ -136,9 +159,10 @@
     - grafana_installation == 'native'
     - grafana_plugins_list.stdout is defined
     - item not in grafana_plugins_list.stdout
-    - item.state | default('present') == 'present'
+    - true if item.state is undefined else item.state == 'present'
   notify:
     - Restart grafana
+  changed_when: false
   ansible.builtin.command: "grafana-cli plugins install {{ item.name | default(item) }}"
   tags:
     - grafana
@@ -149,9 +173,10 @@
     - grafana_installation == 'native'
     - grafana_plugins_list.stdout is defined
     - item in grafana_plugins_list.stdout
-    - item.state | default('present') == 'absent'
+    - false if item.state is undefined else item.state == 'absent'
   notify:
     - Restart grafana
+  changed_when: false
   ansible.builtin.command: "grafana-cli plugins remove {{ item.name | default(item) }}"
   tags:
     - grafana
@@ -183,7 +208,7 @@
 - name: Create docker network
   when:
     - grafana_installation == 'docker'
-    - false if grafana_network is none else (grafana_network | length > 0)| default(false)
+    - false if grafana_network is none else (grafana_network | length > 0)
   community.docker.docker_network:
     name: '{{ grafana_network }}'
   tags:
@@ -194,8 +219,8 @@
     name: "{{ 'grafana-server' if grafana_installation == 'native' else 'grafana' }}"
     state: started
     daemon_reload: true
-    masked: no
-    enabled: yes
+    masked: false
+    enabled: true
   tags:
     - grafana
 
@@ -214,7 +239,7 @@
       retries: 60
       delay: 5
       ansible.builtin.uri:
-        url: "{{ 'http://localhost:3000/healthz' if grafana_installation == 'native' else 'https://'+grafana_domain+'/healthz' }}"
+        url: "{{ 'http://localhost:3000/healthz' if grafana_installation == 'native' else 'https://' + grafana_domain + '/healthz' }}"
         status_code: 200
       tags:
         - grafana
@@ -224,7 +249,7 @@
       when:
         - grafana_manage_admins
       ansible.builtin.uri:
-        url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/users"
+        url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://' + grafana_domain }}/api/users"
         user: "{{ grafana_username }}"
         password: "{{ grafana_password }}"
         force_basic_auth: true
@@ -240,7 +265,7 @@
         - item != grafana_username
         - item not in grafana_admins
       ansible.builtin.uri:
-        url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/admin/users/{{ grafana_existing_users.json | selectattr('login', 'equalto', item) | map(attribute='id') | first }}/permissions"
+        url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://' + grafana_domain }}/api/admin/users/{{ grafana_existing_users.json | selectattr('login', 'equalto', item) | map(attribute='id') | first }}/permissions"
         user: "{{ grafana_username }}"
         password: "{{ grafana_password }}"
         force_basic_auth: true
@@ -256,7 +281,7 @@
         - grafana_manage_admins
         - ((grafana_existing_users.json | selectattr('login', 'equalto', item)) | list) | length != 0
       ansible.builtin.uri:
-        url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/admin/users/{{ grafana_existing_users.json | selectattr('login', 'equalto', item) | map(attribute='id') | first }}/permissions"
+        url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://' + grafana_domain }}/api/admin/users/{{ grafana_existing_users.json | selectattr('login', 'equalto', item) | map(attribute='id') | first }}/permissions"
         user: "{{ grafana_username }}"
         password: "{{ grafana_password }}"
         force_basic_auth: true
@@ -271,7 +296,7 @@
       when:
         - grafana_manage_orgs
       ansible.builtin.uri:
-        url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/orgs"
+        url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://' + grafana_domain }}/api/orgs"
         user: "{{ grafana_username }}"
         password: "{{ grafana_password }}"
         force_basic_auth: true
@@ -286,7 +311,7 @@
         - grafana_manage_orgs
         - ((grafana_existing_orgs.json | selectattr('name', 'equalto', item)) | list) | length == 0
       ansible.builtin.uri:
-        url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/orgs"
+        url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://' + grafana_domain }}/api/orgs"
         user: "{{ grafana_username }}"
         password: "{{ grafana_password }}"
         force_basic_auth: true
@@ -301,7 +326,7 @@
 
     - name: Update default org
       ansible.builtin.uri:
-        url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://'+grafana_domain }}/api/orgs/1"
+        url: "{{ 'http://localhost:3000' if grafana_installation == 'native' else 'https://' + grafana_domain }}/api/orgs/1"
         user: "{{ grafana_username }}"
         password: "{{ grafana_password }}"
         force_basic_auth: true
