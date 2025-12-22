@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.1.0](https://github.com/rolehippie/grafana/compare/v6.0.0...v6.1.0) (2025-12-22)
+
+
+### Features
+
+* make linter happy and properly dearmor repo key ([229a9d0](https://github.com/rolehippie/grafana/commit/229a9d0e11fe4d6ac9fadd457f8e494e2b329f90))
+
+
+### Bugfixes
+
+* **patch:** update dependency grafana/grafana to v12.3.1 ([8a6f1fd](https://github.com/rolehippie/grafana/commit/8a6f1fd0d6daa22a27a08e21a800f0fae7b64669))
+
 ## [6.0.0](https://github.com/rolehippie/grafana/compare/v5.4.0...v6.0.0) (2025-12-01)
 
 
