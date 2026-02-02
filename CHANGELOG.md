@@ -1,5 +1,20 @@
 # Changelog
 
+## [6.1.1](https://github.com/rolehippie/grafana/compare/v6.1.0...v6.1.1) (2026-02-02)
+
+### Dependencies
+
+* **patch:** update dependency grafana/grafana to v12.3.2 ([#101](https://github.com/rolehippie/grafana/issues/101)) ([17e33de](https://github.com/rolehippie/grafana/commit/17e33de9ee6fc68e79491e96ece58aabeb37ff1a))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([d9717c8](https://github.com/rolehippie/grafana/commit/d9717c8bc6d662b4c7eeefd7b4b051219a5442ac))
+* **flake:** updated lockfile [skip ci] ([bf3475b](https://github.com/rolehippie/grafana/commit/bf3475be775e4865af80c9d1b88944730a2d7037))
+* **flake:** updated lockfile [skip ci] ([4c3480d](https://github.com/rolehippie/grafana/commit/4c3480d41904a5b7364d58dcb49e7bef27502afc))
+* **flake:** updated lockfile [skip ci] ([b01aab4](https://github.com/rolehippie/grafana/commit/b01aab4f2a069a10399989d6acd642ced81d5916))
+* **flake:** updated lockfile [skip ci] ([2403d60](https://github.com/rolehippie/grafana/commit/2403d60764b8fab38b3afb538993341fbf96535c))
+* **flake:** updated lockfile [skip ci] ([726d95f](https://github.com/rolehippie/grafana/commit/726d95fc73778295615773e73b0979d6562b453b))
+
 ## [6.1.0](https://github.com/rolehippie/grafana/compare/v6.0.0...v6.1.0) (2025-12-22)
 
 
