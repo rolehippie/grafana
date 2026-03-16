@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.2.1](https://github.com/rolehippie/grafana/compare/v6.2.0...v6.2.1) (2026-03-16)
+
+### Dependencies
+
+* **patch:** update dependency grafana/grafana to v12.4.1 ([#105](https://github.com/rolehippie/grafana/issues/105)) ([6d61b68](https://github.com/rolehippie/grafana/commit/6d61b6821b00aea06fa24854f9f4237f977b5321))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([516a0af](https://github.com/rolehippie/grafana/commit/516a0afb87e43cff854bebcd18995de57b435334))
+* **flake:** updated lockfile [skip ci] ([1da634b](https://github.com/rolehippie/grafana/commit/1da634b65720e8042275c5ea4da75bb8219ec5ad))
+
 ## [6.2.0](https://github.com/rolehippie/grafana/compare/v6.1.2...v6.2.0) (2026-03-02)
 
 ### Dependencies
