@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.4.0](https://github.com/rolehippie/grafana/compare/v6.3.0...v6.4.0) (2026-04-13)
+
+### Dependencies
+
+* **minor:** update dependency community.docker to >=5.2.0,<5.3.0 ([#110](https://github.com/rolehippie/grafana/issues/110)) ([2e3b531](https://github.com/rolehippie/grafana/commit/2e3b5319ddbfbd4aa9b035a59c2a3c2507e542d9))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([a8eaecb](https://github.com/rolehippie/grafana/commit/a8eaecb0c4d0c05b0eb004f38f0b713bf4311edc))
+* **flake:** updated lockfile [skip ci] ([5e9379e](https://github.com/rolehippie/grafana/commit/5e9379e7ad3a32980fe1465a2f63043232edbb25))
+
 ## [6.3.0](https://github.com/rolehippie/grafana/compare/v6.2.1...v6.3.0) (2026-03-30)
 
 ### Dependencies
