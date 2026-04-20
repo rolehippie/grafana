@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/rolehippie/grafana/compare/v6.4.0...v7.0.0) (2026-04-20)
+
+### Dependencies
+
+* **major:** update dependency grafana/grafana to v13 ([3c03435](https://github.com/rolehippie/grafana/commit/3c03435354b804158ce9d06570435db35cd89881))
+* **patch:** update dependency grafana/grafana to v13.0.1 ([6a59d4f](https://github.com/rolehippie/grafana/commit/6a59d4fddc6f3d1005401543a39164747148c7c3))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([a74df0f](https://github.com/rolehippie/grafana/commit/a74df0fe8727365334aa22aceaaf3c9d504bd918))
+
 ## [6.4.0](https://github.com/rolehippie/grafana/compare/v6.3.0...v6.4.0) (2026-04-13)
 
 ### Dependencies
