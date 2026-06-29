@@ -1,5 +1,7 @@
 # Changelog
 
+## [7.0.2](https://github.com/rolehippie/grafana/compare/v7.0.1...v7.0.2) (2026-06-29)
+
 ## [7.0.1](https://github.com/rolehippie/grafana/compare/v7.0.0...v7.0.1) (2026-06-15)
 
 ### Dependencies
