@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.2.1](https://github.com/rolehippie/grafana/compare/v7.2.0...v7.2.1) (2026-08-10)
+
+### Dependencies
+
+* **patch:** update dependency grafana/grafana to v13.1.2 ([576374b](https://github.com/rolehippie/grafana/commit/576374b4f741449a1692fe36a550079c57e3025c))
+* **patch:** update dependency grafana/grafana to v13.1.3 ([cc2330e](https://github.com/rolehippie/grafana/commit/cc2330e9b234fe0b3ef86f6a995b6f69e2058ece))
+* **patch:** update dependency python to v3.14.7 ([646469c](https://github.com/rolehippie/grafana/commit/646469cb27f0a5ce9ea5a43c7d5c161900a31c91))
+
 ## [7.2.0](https://github.com/rolehippie/grafana/compare/v7.1.0...v7.2.0) (2026-07-27)
 
 ## [7.1.0](https://github.com/rolehippie/grafana/compare/v7.0.2...v7.1.0) (2026-07-06)
