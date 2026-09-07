@@ -1,5 +1,19 @@
 # Changelog
 
+## [7.3.0](https://github.com/rolehippie/grafana/compare/v7.2.1...v7.3.0) (2026-09-07)
+
+### Features
+
+* add separate requirements for molecule run ([bdf9cfd](https://github.com/rolehippie/grafana/commit/bdf9cfd6ccd967b18fee72a8d312048928fcab62))
+
+### Bugfixes
+
+* use batch for gpg calls ([632a3f5](https://github.com/rolehippie/grafana/commit/632a3f594e01d1dde4b52bb8bd38ad2dc7673de9))
+
+### Dependencies
+
+* **minor:** update dependency grafana/grafana to v13.2.1 ([facd708](https://github.com/rolehippie/grafana/commit/facd70842548eeb4f68debb0de1c4611672aec1f))
+
 ## [7.2.1](https://github.com/rolehippie/grafana/compare/v7.2.0...v7.2.1) (2026-08-10)
 
 ### Dependencies
