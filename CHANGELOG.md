@@ -1,5 +1,11 @@
 # Changelog
 
+## [7.3.1](https://github.com/rolehippie/grafana/compare/v7.3.0...v7.3.1) (2026-09-21)
+
+### Dependencies
+
+* **patch:** update dependency grafana/grafana to v13.2.2 ([cbf01b5](https://github.com/rolehippie/grafana/commit/cbf01b5afb3a9c2d2d62a6b019d5aa25f52111a8))
+
 ## [7.3.0](https://github.com/rolehippie/grafana/compare/v7.2.1...v7.3.0) (2026-09-07)
 
 ### Features
